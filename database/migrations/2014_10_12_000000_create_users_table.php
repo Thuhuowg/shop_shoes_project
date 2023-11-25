@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('slug');
             $table->integer('role_id');
+            $table->string('staff_code');
+            $table->string('customer_code');
             $table->rememberToken();
             $table->timestamps();
         });

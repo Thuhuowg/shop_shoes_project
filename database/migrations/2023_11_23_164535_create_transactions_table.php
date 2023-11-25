@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('district_id');
             $table->integer('ward_id');
             $table->integer('product_id');
-            $table->integer('payment_metho_id');
+            $table->integer('payment_method_id');
             $table->timestamps();
         });
     }

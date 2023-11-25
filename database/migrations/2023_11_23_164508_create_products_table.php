@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('images_list');
             $table->integer('star_counter');
+            $table->integer('type_id');
             $table->string('slug');
             $table->timestamps();
         });

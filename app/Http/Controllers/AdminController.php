@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use app\Models\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -33,23 +33,25 @@ class AdminController extends Controller
     }
     public function postRegister (Request $request)
     {
+
         $request->validate([
         'name' => 'required|min:3|max:50',
         'email' => 'email',
         'phone' => 'required|max:13',
         'password' => 'required|min:6|same:confirm_password',
-        'password_confirmation' => 'required|min:6'
+        'confirm_password' => 'required|min:6'
     ],[
-        'password_confirmation.required'=> 'Hãy nhập lại mật khẩu',
+        'confirm_password.required'=> 'Hãy nhập lại mật khẩu',
         'password.confirmed'=> 'Mật khẩu không khớp'
     ]);
 //        $request->merge([
 //            'password'=>Hash::make($request->password),
+//            'confirm_password'=>Hash::make($request->confirm_password),
 //        ]);
 
         try
         {
-            dd($request);
+//            dd($request);
             User::create($request->all());
         }catch(\Throwable $th){
             dd($th);

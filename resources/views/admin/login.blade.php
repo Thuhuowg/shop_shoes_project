@@ -66,9 +66,6 @@
             <p class="mb-1">
                 <a href="#">Quên mật khẩu</a>
             </p>
-            <p class="mb-0">
-                <a href="{{route('admin.post-register')}}" class="text-center">Tôi chưa có tài khoản</a>
-            </p>
         </div>
         <!-- /.card-body -->
     </div>

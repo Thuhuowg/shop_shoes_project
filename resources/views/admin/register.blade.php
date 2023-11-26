@@ -43,7 +43,7 @@
                 </div>
                 <small class="text-danger">{{ $errors->first('phone') }}</small>
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" name="email" placeholder="Email" :value="old('email')" required autofocus autocomplete="username">
+                    <input type="email" class="form-control" name="email" placeholder="Email"  required autofocus autocomplete="username">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -63,7 +63,7 @@
                     <small class="text-danger">{{ $errors->first('password') }}</small>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Xác nhận mật khẩu">
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Xác nhận mật khẩu">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -73,13 +73,12 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-5 text-center">
+                    <div class="col-5 justify-content-center">
                         <button type="submit" class="btn btn-primary btn-block">Đăng kí</button>
                     </div>
 
                 </div>
             </form>
-            <a href="{{route('admin.login')}}" class="text-center">Tôi đã có tài khoản</a>
         </div>
 
     </div>

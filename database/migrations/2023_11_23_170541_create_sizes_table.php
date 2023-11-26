@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('category_parent_id');
             $table->float('size_number');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

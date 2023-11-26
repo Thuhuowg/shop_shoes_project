@@ -6,8 +6,6 @@ Route::post('/login',[AdminController::class,'postLogin'])->name('admin.post-log
 Route::get('/register',[AdminController::class,'register'])->name('admin.register');
 Route::post('/register',[AdminController::class,'postRegister'])->name('admin.post-register');
 Route::get('/logout',[AdminController::class,'logout'])->name('admin.logout');
-Route::get('/homes',function () {
-    return view('admin.home');
-})->name('admin');
+
 
 

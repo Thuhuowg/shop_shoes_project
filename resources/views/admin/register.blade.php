@@ -72,6 +72,7 @@
                     <small class="text-danger">{{ $errors->first('password_confirmation') }}</small>
 
                 </div>
+                <input type="hidden" name="role" value="1">
                 <div class="row">
                     <div class="col-5 justify-content-center">
                         <button type="submit" class="btn btn-primary btn-block">Đăng kí</button>

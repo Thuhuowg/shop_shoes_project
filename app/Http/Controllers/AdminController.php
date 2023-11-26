@@ -33,19 +33,20 @@ class AdminController extends Controller
     }
     public function postRegister (Request $request)
     {
-        $request->merge(['password'=>Hash::make($request->password)]);
-        $request->merge(['password_confirmation'=>Hash::make($request->password)]);
-
         $request->validate([
-            'name' => 'required|min:3|max:50',
-            'email' => 'email',
-            'phone' => 'required|max:13',
-            'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6'
-        ],[
-            'password_confirmation.required'=> 'Hãy nhập lại mật khẩu',
-            'password.confirmed'=> 'Mật khẩu không khớp'
-        ]);
+        'name' => 'required|min:3|max:50',
+        'email' => 'email',
+        'phone' => 'required|max:13',
+        'password' => 'required|min:6|same:confirm_password',
+        'password_confirmation' => 'required|min:6'
+    ],[
+        'password_confirmation.required'=> 'Hãy nhập lại mật khẩu',
+        'password.confirmed'=> 'Mật khẩu không khớp'
+    ]);
+//        $request->merge([
+//            'password'=>Hash::make($request->password),
+//        ]);
+
         try
         {
             dd($request);

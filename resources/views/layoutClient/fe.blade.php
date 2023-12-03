@@ -45,24 +45,15 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    Miễn phí vận chuyển với đơn hàng trên 1.500.000 VNĐ
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
+                        Hotline: 034548www
                     </a>
-
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
+                        Email: huogthuwww@gmail.com
                     </a>
                 </div>
             </div>
@@ -120,11 +111,6 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                        <i class="zmdi zmdi-account"></i>
-
-                    </div>
-
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
@@ -132,6 +118,31 @@
                     <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
+                    @if(Route::has('login'))
+                        @auth
+                            <span class="has-children" >
+
+                            <button class=" text-sm underline" data-toggle="dropdown">{{\Illuminate\Support\Facades\Auth::user()->name}}</button>
+                        <ul class="dropdown-menu btn-secondary">
+                            <li><a class=" btn  dropdown-toggle " href="{{route('logout')}}">Đăng xuất</a></li>
+                        </ul></span>
+                        @else
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" type="button" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="zmdi zmdi-account"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    @if(Route::has('register'))
+                                    <a class="dropdown-item" href="#">Đăng nhập</a>
+                                        @endif
+                                    @if(Route::has('register'))
+                                    <a class="dropdown-item" href="#">Đăng kí</a>
+                                        @endif
+                                </div>
+                            </div>
+                        @endauth
+                    @endif
+
                 </div>
             </nav>
         </div>
@@ -421,80 +432,26 @@
 <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
         <div class="row">
+            <?php $name=0 ?>
+            @foreach($types as $type)
+                @if($name < 3)
             <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/banner-01.jpg" alt="IMG-BANNER">
-
-                    <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                        <div class="block1-txt-child1 flex-col-l">
+                    <img src="uploads/{{$type->image}}" alt="IMG-BANNER">
+                </div>
+                <div class="justify-content-md-center">
+                    <a href="#">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Women
+									{{$type->name}}
 								</span>
-
-                            <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-                        </div>
-
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
-                        </div>
                     </a>
                 </div>
+
             </div>
-
-            <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                <!-- Block1 -->
-                <div class="block1 wrap-pic-w">
-                    <img src="images/banner-02.jpg" alt="IMG-BANNER">
-
-                    <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                        <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Men
-								</span>
-
-                            <span class="block1-info stext-102 trans-04">
-									Spring 2018
-								</span>
-                        </div>
-
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
-                <!-- Block1 -->
-                <div class="block1 wrap-pic-w">
-                    <img src="images/banner-03.jpg" alt="IMG-BANNER">
-
-                    <a href="product.html" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                        <div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Antakids
-								</span>
-
-                            <span class="block1-info stext-102 trans-04">
-									New Trend
-								</span>
-                        </div>
-
-                        <div class="block1-txt-child2 p-b-4 trans-05">
-                            <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+                @endif
+                <?php ++$name ?>
+            @endforeach
         </div>
     </div>
 </div>

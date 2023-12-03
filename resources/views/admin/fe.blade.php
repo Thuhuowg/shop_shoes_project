@@ -16,9 +16,9 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
-    <link rel="stylesheet" href="{{asset('plugins/jqvmap/jqvmap.min.css')}}">
+
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <link rel="stylesheet" href="{{asset('dist/css/adminlte.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
@@ -210,7 +210,7 @@
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('info')}}" class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                Thông tin tài khoản
@@ -228,27 +228,50 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('list.products')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách sản phẩm</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('add.product')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Thêm sản phẩm</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('list.sizes')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Quản lý size giày</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('list.types')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Quản lý loại giày</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Quản lý số lượng
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('list.quantities')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('add.quantity')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm Số lượng</p>
                                 </a>
                             </li>
                         </ul>
@@ -263,13 +286,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('list.categories')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách danh mục</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('add.category')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Thêm danh mục</p>
                                 </a>
@@ -363,7 +386,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{route('admin.register')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Thêm nhân viên</p>
                                 </a>
@@ -435,7 +458,7 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         @section('content')
 
                         @show
@@ -447,13 +470,13 @@
     </div>
     <!-- /.content-wrapper -->
 
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="#">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.2.0
-        </div>
-    </footer>
+{{--    <footer class="main-footer">--}}
+{{--        <strong>Copyright &copy; 2014-2021 <a href="#">AdminLTE.io</a>.</strong>--}}
+{{--        All rights reserved.--}}
+{{--        <div class="float-right d-none d-sm-inline-block">--}}
+{{--            <b>Version</b> 3.2.0--}}
+{{--        </div>--}}
+{{--    </footer>--}}
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
@@ -478,8 +501,6 @@
 <!-- Sparkline -->
 <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
-<script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
 <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->

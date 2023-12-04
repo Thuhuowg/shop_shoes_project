@@ -223,6 +223,7 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+<<<<<<< HEAD
                         <li class="nav-item">
                             <a href="{{ route('info') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -481,6 +482,246 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content -->
+=======
+                    <li class="nav-item">
+                        <a href="{{route('info')}}" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                               Thông tin tài khoản
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                               Quản lý sản phẩm
+                                <i class="fas fa-angle-left right"></i>
+                                <span class="badge badge-info right">6</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('list.products')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('add.product')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('list.sizes')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Quản lý size giày</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('list.types')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Quản lý loại giày</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                Quản lý số lượng
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('list.quantities')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('add.quantity')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm Số lượng</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-weight-hanging"></i>
+                            <p>
+                                Quản lý danh mục
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('list.categories')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách danh mục</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('add.category')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm danh mục</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fab fa-adversal"></i>
+                            <p>
+                                Quản lý banner
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{route('list.banners')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách banner</p>
+                                    <span class="right badge badge-danger">New</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-shopping-cart"></i>
+                            <p>
+                                Quản lý đơn hàng
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Đơn hàng chờ xác nhận</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Đơn hàng chờ vận chuyển</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Đơn hàng đã hoàn thành</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Quản lý khách hàng
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách khách hàng</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm mới khách hàng</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-header"><br></li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user-cog"></i>
+                            <p>
+                                Quản lý nhân viên
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách nhân viên</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('admin.register')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thêm nhân viên</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-book"></i>
+                            <p>
+                                Báo cáo thống kê
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Báo cáo doanh thu</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thống kê hàng tồn</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thống kê hàng đã bán</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Thống kê số lượng người truy cập</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon far fa-envelope"></i>
+                            <p>
+                                Mailbox
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('admin.logout')}}" class="nav-link">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            <p>
+                                Đăng xuất
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+>>>>>>> db33ed375ac486737ff31c00326b365a18d8e6a8
         </div>
         <!-- /.content-wrapper -->
 

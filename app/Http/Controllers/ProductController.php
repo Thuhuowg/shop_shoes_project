@@ -12,12 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function add_size()
-    {
-        $categories = Category::all();
-        return view('add.add-size', compact('categories'));
-    }
 
+<<<<<<< HEAD
     public function post_add_size(Request $request)
     {
         Size::create([
@@ -79,6 +75,8 @@ class ProductController extends Controller
         $types = Type::all();
         return view('list.types-list', compact('types'));
     }
+=======
+>>>>>>> db33ed375ac486737ff31c00326b365a18d8e6a8
 
     /**
      * Display a listing of the resource.
@@ -86,62 +84,24 @@ class ProductController extends Controller
     public function index()
     {
         //
+        return view('client.product-list');
     }
 
     public function index_admin()
     {
         //
+        $products = Product::paginate(5);
         $categories = Category::all();
 //        dd($categories);
-        $products = Product::paginate(5);
-        $finds = DB::table('product_sizes')->get();
 //        dd($finds);
         $types = Type::all();
-        return view('list.products-list', compact('categories', 'products', 'finds', 'types'));
+        return view('list.products-list', compact('categories', 'products', 'types'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create_quantity()
-    {
-        //
-        $categories = Category::all();
-        $products = Product::all();
-        $sizes = Size::all();
-        return view('add.add-quantity', compact('categories', 'products', 'sizes'));
-    }
 
-    public function store_quantity(Request $request)
-    {
-        try {
-            DB::beginTransaction();
-
-            // code xử lý
-            DB::table('product_sizes')->insert([
-                'product_id' => $request->product_id,
-                'size_id' => $request->size_id,
-                'quantity' => $request->quantity
-            ]);
-            // nếu bạn muốn check lỗi attach thì sẽ dùng
-            DB::commit(); // nếu code xử lý thành công thì mới commit dữ liệu
-
-            return redirect()->route('admin');
-        } catch (Exception $e) {
-            DB::rollBack(); // nếu code phía trên xẩy ra lỗi thì sẽ được rollback
-
-            return;
-        }
-    }
-
-    public function list_quantities()
-    {
-
-        $products = Product::paginate(5);
-        $finds = DB::table('product_sizes')->get();
-        $sizes= Size::all();
-        return view('list.quantity-list',compact('products','finds','sizes'));
-    }
 
     public function create()
     {

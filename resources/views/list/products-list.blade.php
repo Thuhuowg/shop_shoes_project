@@ -18,7 +18,6 @@
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Loại </th>
                             <th scope="col">Danh mục </th>
-                            <th scope="col">Số lượng</th>
                             <th scope="col">Giá mặc định</th>
                             <th scope="col">Giá sale</th>
                             <th scope="col">Đánh giá</th>
@@ -48,16 +47,6 @@
                                         @endif
                                     @endforeach
                             </td>
-                            <td>
-                                <?php $num=0; ?>
-                                @foreach($finds as $find)
-                              @if($product->id==$find->product_id)
-                                    <?php  $num+= $find->quantity ?>
-                              @endif
-
-                                    @endforeach
-                                {{$num}}
-                            </td>
                             <td>{{number_format($product->price_default)}}</td>
                             <td>{{number_format($product->price_sale)}}</td>
                             <td></td>
@@ -74,6 +63,5 @@
                     </table>
                 </div>
     </div>
-    {{ $products->links() }}
 @endsection
 

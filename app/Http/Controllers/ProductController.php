@@ -68,7 +68,9 @@ class ProductController extends Controller
             ]);
             return redirect()->route('list.types');
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
+            return redirect()->back()->with("Add Type fail");
+
         }
     }
 

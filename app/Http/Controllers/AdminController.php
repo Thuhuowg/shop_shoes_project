@@ -54,8 +54,9 @@ class AdminController extends Controller
         {
 //            dd($request);
             User::create($request->all());
-        }catch(\Throwable $th){
-            dd($th);
+        }catch(Exception $e){
+
+            dd($e);
         }
         return redirect()->route('admin.login');
     }

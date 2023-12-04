@@ -8,12 +8,12 @@ use App\Models\Category;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
 
-<<<<<<< HEAD
     public function post_add_size(Request $request)
     {
         Size::create([
@@ -75,8 +75,6 @@ class ProductController extends Controller
         $types = Type::all();
         return view('list.types-list', compact('types'));
     }
-=======
->>>>>>> db33ed375ac486737ff31c00326b365a18d8e6a8
 
     /**
      * Display a listing of the resource.
@@ -90,12 +88,12 @@ class ProductController extends Controller
     public function index_admin()
     {
         //
-        $products = Product::paginate(5);
+        $products = Product::orderBy('id','desc')->paginate(5)->withQueryString();;
         $categories = Category::all();
 //        dd($categories);
 //        dd($finds);
         $types = Type::all();
-        return view('list.products-list', compact('categories', 'products', 'types'));
+        return view('list.products-list', compact('products','types','categories'));
     }
 
     /**

@@ -36,14 +36,11 @@
                             <label>Lựa chọn loại giày</label>
                             <div>
                                 <select name="type_id" id="type" class="form-control" >
-                                    @foreach($categories as $category)
-                                        <optgroup label="{{$category->name}}"/>
-                                        @if($category->types)
-                                            @foreach($category->types as $type)
+                                            @foreach($types as $type)
                                                 <option value="{{$type->id}}">{{$type->name}}</option>
                                             @endforeach
-                                        @endif
-                                    @endforeach
+
+
                                 </select>
                             </div>
                         </div>

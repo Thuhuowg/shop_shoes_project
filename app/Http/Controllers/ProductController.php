@@ -12,71 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function add_size()
-    {
-        $categories = Category::all();
-        return view('add.add-size', compact('categories'));
-    }
 
-    public function post_add_size(Request $request)
-    {
-        Size::create([
-            'category_id' => $request->category_id,
-            'size_number' => $request->size_number
-        ]);
-        try {
-            dd($request);
-            return redirect()->route('list.sizes');
-        } catch (Exception $exception) {
-            echo "Message: " . $exception->getMessage();
-        }
-    }
-
-    public function list_size()
-    {
-        $categories = Category::all();
-        $sizes = Size::orderBy('size_number', 'ASC')->select('id', 'size_number', 'category_id')->get();
-
-//        $sizes = Size::get()->sortBy('sizes.id')->all();
-        return view('list.size-list', compact('sizes', 'categories'));
-    }
-
-    public function create_type()
-    {
-        return view('add.add-type');
-    }
-
-    public function post_create_type(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'name_vn' => 'required',
-            'image' => 'required',
-        ], [
-            'name.required' => 'Không được để trống',
-            'name_vn.required' => 'Tên thay thế không được để trống',
-            'image.required' => 'Yêu cầu nhập hình ảnh ',
-        ]);
-
-
-        try {
-            Type::create([
-                'name' => $request->name,
-                'name_vn' => $request->name_vn,
-                'image' => $request->image,
-                'slug' => $request->slug
-            ]);
-            return redirect()->route('list.types');
-        } catch (\Throwable $th) {
-            dd($th);
-        }
-    }
-
-    public function list_types()
-    {
-        $types = Type::all();
-        return view('list.types-list', compact('types'));
-    }
 
     /**
      * Display a listing of the resource.
@@ -84,62 +20,24 @@ class ProductController extends Controller
     public function index()
     {
         //
+        return view('client.product-list');
     }
 
     public function index_admin()
     {
         //
+        $products = Product::paginate(5);
         $categories = Category::all();
 //        dd($categories);
-        $products = Product::paginate(5);
-        $finds = DB::table('product_sizes')->get();
 //        dd($finds);
         $types = Type::all();
-        return view('list.products-list', compact('categories', 'products', 'finds', 'types'));
+        return view('list.products-list', compact('categories', 'products', 'types'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create_quantity()
-    {
-        //
-        $categories = Category::all();
-        $products = Product::all();
-        $sizes = Size::all();
-        return view('add.add-quantity', compact('categories', 'products', 'sizes'));
-    }
 
-    public function store_quantity(Request $request)
-    {
-        try {
-            DB::beginTransaction();
-
-            // code xử lý
-            DB::table('product_sizes')->insert([
-                'product_id' => $request->product_id,
-                'size_id' => $request->size_id,
-                'quantity' => $request->quantity
-            ]);
-            // nếu bạn muốn check lỗi attach thì sẽ dùng
-            DB::commit(); // nếu code xử lý thành công thì mới commit dữ liệu
-
-            return redirect()->route('admin');
-        } catch (Exception $e) {
-            DB::rollBack(); // nếu code phía trên xẩy ra lỗi thì sẽ được rollback
-
-            return;
-        }
-    }
-
-    public function list_quantities()
-    {
-
-        $products = Product::paginate(5);
-        $finds = DB::table('product_sizes')->get();
-        $sizes= Size::all();
-        return view('list.quantity-list',compact('products','finds','sizes'));
-    }
 
     public function create()
     {

@@ -126,6 +126,7 @@
                         <ul class="dropdown-menu btn-secondary">
                             <li><a class=" btn  dropdown-toggle " href="{{route('logout')}}">Đăng xuất</a></li>
                         </ul></span>
+
                         @else
                             <div class="dropdown">
                                 <button class="btn dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" type="button" data-toggle="dropdown" aria-expanded="false">
@@ -346,36 +347,14 @@
     </div>
 </div>
 
-
-
 <!-- Slider -->
 <section class="section-slide">
     <div class="wrap-slick1">
         <div class="slick1">
-            <div class="item-slick1" >
-                <div class="container h-full">
-                    <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
-                        <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
-								<span class="ltext-101 cl2 respon2">
-									Women Collection 2018
-								</span>
-                        </div>
-
-                        <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
-                            <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                NEW SEASON
-                            </h2>
-                        </div>
-
-                        <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                            <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                Shop Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            @foreach($banners as $banner)
+            <div class="item-slick1" style="background-image: url('uploads/{{$banner->image}}');margin-top:80px" >
             </div>
-
+                @endforeach
             <div class="item-slick1" style="background-image: url(images/slide-02.jpg);">
                 <div class="container h-full">
                     <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
@@ -740,7 +719,7 @@
 
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+            <a href="{{route('client.products')}}" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                 Load More
             </a>
         </div>

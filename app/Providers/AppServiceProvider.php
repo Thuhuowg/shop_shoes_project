@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Providers;
+use App\Http\Controllers\BannerController;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Type;
@@ -29,7 +31,8 @@ class AppServiceProvider extends ServiceProvider
                 'admin'=>User::all(),
                 'categories'=>Category::all(),
                 'products'=>Product::all(),
-                'types'=>Type::all()
+                'types'=>Type::all(),
+                'banners'=>Banner::all()
             ]);
         });
     }

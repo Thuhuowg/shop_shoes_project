@@ -21,7 +21,9 @@ class FunctionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        require_once app_path() . '/Helpers/function.php';
+        foreach (glob(app_path('Helpers') . '/*.php') as $file) {
+            require_once $file;
+        }
     }
 }
 ?>

@@ -26,6 +26,7 @@ Route::get('/home', function(){
     return view('layoutClient.fe');
 })->name('home');
 Route::get('/product',[ProductController::class,'index'])->name('client.products');
+Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -61,6 +62,11 @@ Route::middleware('admin')->group(function () {
     Route::post('/add-quantity',[QuantityController::class,'store'])->name('post-add.quantity');
     Route::get('/add-banner',[\App\Http\Controllers\BannerController::class,'create'])->name('add.banner');
     Route::post('/add-banner',[\App\Http\Controllers\BannerController::class,'store'])->name('post-add.banner');
+});
+Route::middleware('admin')->group(function (){
+    Route::get('/delete-product/{id}',[ProductController::class,'destroy'])->name('delete.product');
+    Route::get('/trash-product',[ProductController::class,'trash'])->name('trash.product');
+    Route::get('/restore-product/{id}',[ProductController::class,'restore'])->name('restore.product');
 });
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

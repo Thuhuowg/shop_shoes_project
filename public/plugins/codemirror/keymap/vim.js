@@ -29,7 +29,7 @@
  *     and instantiation
  *  5. Key handler (the main command dispatcher) implementation
  *  6. Motion, operator, and action implementations
- *  7. Helper functions for the key handler, motions, operators, and actions
+ *  7. Helpers functions for the key handler, motions, operators, and actions
  *  8. Set up Vim to work as a keymap for CodeMirror.
  *  9. Ex command implementations.
  */

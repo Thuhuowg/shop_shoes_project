@@ -26,7 +26,7 @@
 }(function ($) {
     'use strict';
 
-    // Helper variable to create unique names for the transport iframes:
+    // Helpers variable to create unique names for the transport iframes:
     var counter = 0,
         jsonAPI = $,
         jsonParse = 'parseJSON';

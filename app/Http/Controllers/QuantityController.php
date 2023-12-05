@@ -18,10 +18,10 @@ class QuantityController extends Controller
     {
         //
 
-        $products = Product::paginate(5);
+        $products_pag = Product::paginate(5);
         $finds = DB::table('product_sizes')->get();
         $sizes= Size::all();
-        return view('list.quantity-list',compact('products','finds','sizes'));
+        return view('list.quantity-list',compact('products_pag','finds','sizes'));
     }
 
     /**

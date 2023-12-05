@@ -30,14 +30,14 @@ class AppServiceProvider extends ServiceProvider
         //
 
         Paginator::useBootstrap();
-        // view()->composer('*', function ($view){
-        //     $view ->with([
-        //         'admin'=>User::all(),
-        //         'categories'=>Category::all(),
-        //         'products'=>Product::all(),
-        //         'types'=>Type::all(),
-        //         'banners'=>Banner::all()
-        //     ]);
-        // });
+         view()->composer('*', function ($view){
+             $view ->with([
+                 'admin'=>User::all(),
+                 'categories'=>Category::all(),
+                 'products'=>Product::all(),
+                 'types'=>Type::all(),
+                 'banners'=>Banner::all()
+             ]);
+         });
     }
 }

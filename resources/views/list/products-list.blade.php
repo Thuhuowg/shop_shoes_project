@@ -3,8 +3,12 @@
     <div class="row">
         <div class="">
             <div class="card">
-                <div class="card-header">
+                <div class="row card-header">
                     <h3 class="card-title">Danh sách sản phẩm</h3>
+                    <a class="btn btn-primary ml-4" href="{{route('add.product')}}">+</a>
+                    <a class="btn btn-info ml-4" href="{{route('trash.product')}}" >
+                        <i class="fa fa-trash"></i>
+                    </a>
                 </div>
 
                 <div class="card-body table-responsive p-0">
@@ -47,22 +51,22 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>{{ number_format($product->price_default) }}</td>
-                                    <td>{{ number_format($product->price_sale) }}</td>
+                                    <td>{{ number_format($product->price_default) }}<small>đ</small></td>
+                                    <td class="text-danger">{{ number_format($product->price_sale) }}<small>đ</small></td>
                                     <td></td>
                                     <td>
                                         <a>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chỉnh
-                                                sửa</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sửa</button>
                                         </a>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Xoá</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                            <a href="{{route('delete.product',$product->id)}}" class="text-white">Xoá</a></button>
                                     </td>
                                 </tr>
                                 <?php $i++; ?>
                             @endforeach
                         </tbody>
                     </table>
-                    {{ $products->links() }}
+                    {{ $products_pag->links() }}
 
                 </div>
             </div>

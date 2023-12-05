@@ -14,67 +14,6 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
 
-    public function post_add_size(Request $request)
-    {
-        Size::create([
-            'category_id' => $request->category_id,
-            'size_number' => $request->size_number
-        ]);
-        try {
-            dd($request);
-            return redirect()->route('list.sizes');
-        } catch (Exception $exception) {
-            echo "Message: " . $exception->getMessage();
-        }
-    }
-
-    public function list_size()
-    {
-        $categories = Category::all();
-        $sizes = Size::orderBy('size_number', 'ASC')->select('id', 'size_number', 'category_id')->get();
-
-//        $sizes = Size::get()->sortBy('sizes.id')->all();
-        return view('list.size-list', compact('sizes', 'categories'));
-    }
-
-    public function create_type()
-    {
-        return view('add.add-type');
-    }
-
-    public function post_create_type(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'name_vn' => 'required',
-            'image' => 'required',
-        ], [
-            'name.required' => 'Không được để trống',
-            'name_vn.required' => 'Tên thay thế không được để trống',
-            'image.required' => 'Yêu cầu nhập hình ảnh ',
-        ]);
-
-
-        try {
-            Type::create([
-                'name' => $request->name,
-                'name_vn' => $request->name_vn,
-                'image' => $request->image,
-                'slug' => $request->slug
-            ]);
-            return redirect()->route('list.types');
-        } catch (\Throwable $th) {
-            // dd($th);
-            return redirect()->back()->with("Add Type fail");
-
-        }
-    }
-
-    public function list_types()
-    {
-        $types = Type::all();
-        return view('list.types-list', compact('types'));
-    }
 
     /**
      * Display a listing of the resource.
@@ -88,12 +27,8 @@ class ProductController extends Controller
     public function index_admin()
     {
         //
-        $products = Product::orderBy('id','desc')->paginate(5)->withQueryString();;
-        $categories = Category::all();
-//        dd($categories);
-//        dd($finds);
-        $types = Type::all();
-        return view('list.products-list', compact('products','types','categories'));
+        $products_pag = Product::orderBy('id','desc')->paginate(5)->withQueryString();;
+        return view('list.products-list', compact('products_pag'));
     }
 
     /**
@@ -150,9 +85,20 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
         //
+        $pro=Product::where('slug',$slug)->first();
+        $image=$pro->image_list;
+        $str_1=str_replace('[', '', $image);
+        $str_2=str_replace(']', '', $str_1);
+        $str_3=explode ( "," , $str_2);
+        $image_arr=str_replace('"', '', $str_3);
+//        foreach ($test4 as $value) {
+//            var_dump($value);
+//        }
+        return view('client.product-detail',compact('pro','image_arr'));
+
     }
 
     /**
@@ -161,6 +107,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         //
+
     }
 
     /**
@@ -177,5 +124,21 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         //
+//        $product=Product::find($id);
+//        dd($product);
+        Product::find($id)->delete();
+        return redirect()->back();
+    }
+    public function trash(Request $r){
+        $pro_trashs= Product::onlyTrashed()->paginate(5);
+        if($r->key){
+            $pro_trash=Product::where('name','LIKE','%'.$r->key.'%')->paginate(5);
+        }
+        return view('trash.trash-product',compact('pro_trashs'));
+    }
+    public function restore (string $id) {
+        $pro_restore=Product::withTrashed()->find(($id));
+        $pro_restore->restore();
+        return redirect()->route('list.products');
     }
 }

@@ -57,7 +57,7 @@
     $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
         Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
 
-    // Helper function to create drag handlers for dragover/dragenter/dragleave:
+    // Helpers function to create drag handlers for dragover/dragenter/dragleave:
     function getDragHandler(type) {
         var isDragOver = type === 'dragover';
         return function (e) {

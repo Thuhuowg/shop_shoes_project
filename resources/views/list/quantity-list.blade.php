@@ -50,5 +50,6 @@
                     </table>
                 </div>
             </div>
+    {{$products_pag->links()}}
 @endsection
 

@@ -26,6 +26,9 @@ Route::get('/home', function(){
     return view('layoutClient.fe');
 })->name('home');
 Route::get('/product',[ProductController::class,'index'])->name('client.products');
+Route::get('/cart',function (){
+    return view('client.payment');
+});
 Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
 Route::get('/dashboard', function () {
     return view('dashboard');

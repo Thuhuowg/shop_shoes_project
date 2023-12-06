@@ -21,7 +21,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('client.product-list');
+        $pros=Product::paginate(12);
+        return view('client.product-list',compact('pros'));
     }
 
     public function index_admin()
@@ -76,7 +77,7 @@ class ProductController extends Controller
             'image_list' => $request->image_list
         ]);
         try {
-            return redirect()->route('admin');
+            return redirect()->back();
         } catch (Exception $e) {
             echo 'Message:' . $e->getMessage();
         }
@@ -94,10 +95,12 @@ class ProductController extends Controller
         $str_2=str_replace(']', '', $str_1);
         $str_3=explode ( "," , $str_2);
         $image_arr=str_replace('"', '', $str_3);
+
+        $sizes=Size::all();
 //        foreach ($test4 as $value) {
 //            var_dump($value);
 //        }
-        return view('client.product-detail',compact('pro','image_arr'));
+        return view('client.product-detail',compact('pro','image_arr','sizes'));
 
     }
 

@@ -238,15 +238,14 @@
             </div>
 
             <div class="row isotope-grid">
-                @foreach($products as $product)
+                @foreach($pros as $pro)
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                               <p> {{$product->image}}</p>
-                                <img src="uploads/{{$product->image}}" alt="IMG-PRODUCT">
+                                <img src="uploads/{{$pro->image}}" alt="IMG-PRODUCT">
 
-                                <a href="{{route('product_detail',$product->slug)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                                <a href="{{route('product_detail',$pro->slug)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
                                     Xem chi tiết
                                 </a>
                             </div>
@@ -254,11 +253,11 @@
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
                                     <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        {{$product->name}}
+                                        {{$pro->name}}
                                     </a>
 
                                     <span class="stext-105 cl3">
-									<del class="text-danger">{{number_format($product->price_default)}}<small>đ</small></del> <span>{{number_format($product->price_sale)}}<small>đ</small></span>
+									<del class="text-danger">{{number_format($pro->price_default)}}<small>đ</small></del> <span>{{number_format($pro->price_sale)}}<small>đ</small></span>
 								</span>
                                 </div>
 
@@ -274,13 +273,7 @@
                 @endforeach
 
             </div>
-
-            <!-- Load more -->
-            <div class="flex-c-m flex-w w-full p-t-45">
-                <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                    Load More
-                </a>
-            </div>
+            {{$pros->links()}}
         </div>
     </section>
 @endsection

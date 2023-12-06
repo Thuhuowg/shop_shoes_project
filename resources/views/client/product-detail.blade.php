@@ -35,99 +35,122 @@
                     </div>
                 </div>
                 <!-- col end -->
-                <div class="col-lg-5 mt-5">
+                <div class="col-lg-5 mt-5 position-sticky fixed">
                     <div class="card">
-                        <div class="card-body" >
-                            <h1 class="h2">{{$pro->name}} </h1>
-                            <p class="h3 py-2">{{($pro->price_default)}}</p>
+                        <div class="card-body">
+                            <h4 class="">{{$pro->name}} </h4>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Thương hiệu:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted active"><a href="{{route('home')}}"><strong>Anta</strong></a>
+                                    </p>
+                                </li>
+                            </ul>
+                            <div class="row ml-2">
+                                <p class="text-h3 py-2 text-danger">
+                                    <strong>{{number_format($pro->price_sale)}}</strong><small>đ</small></p>
+                                <p class="ml-3 text-h3 py-2">
+                                    <del>{{number_format($pro->price_default)}}<small>đ</small></del>
+                                </p>
+                            </div>
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-secondary"></i>
-                                <span class="list-inline-item text-dark">Rating 4.8 | 36 Comments</span>
+                                <span class="list-inline-item text-dark">Rating 4.8 </span>
                             </p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Brand:</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Easy Wear</strong></p>
-                                </li>
-                            </ul>
-
-                            <h6>Description:</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temp incididunt
-                                ut labore et dolore magna aliqua. Quis ipsum suspendisse. Donec condimentum elementum
-                                convallis. Nunc sed orci a diam ultrices aliquet interdum quis nulla.</p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p class="text-muted"><strong>White / Black</strong></p>
-                                </li>
-                            </ul>
-
-                            <h6> Specification:</h6>
-                            <ul class="list-unstyled pb-3">
-                                <li>Lorem ipsum dolor sit</li>
-                                <li> Amet, consectetur</li>
-                                <li>Adipiscing elit,set</li>
-                                <li>Duis aute irure</li>
-                                <li> Ut enim ad minim</li>
-                                <li>Dolore magna aliqua</li>
-                                <li>Excepteur sint</li>
-                            </ul>
+                            <div class="sale mb-3">
+                                <span class="title "><i class="zmdi zmdi-card-giftcard mr-1"></i>Khuyến mãi </span>
+                                <ul class="mt-2">
+                                    <li>ƯU ĐÃI THÁNG 12: SALE UPTO 50%+++</li>
+                                    <li>Siêu sale cuối năm với hàng loạt chương trình khuyến mại hấp dẫn!</li>
+                                    <li>🔥 COMBO: ANTA10, MUA2GIAM15%, MUA3GIAM30%</li>
+                                    <li>🔥 VOUCHER: 60K, 100K, 200K</li>
+                                    <li>Áp dụng sản phẩm có mức giảm giá < 50%, Không áp dụng với sản phẩm mới</li>
+                                </ul>
+                            </div>
 
                             <form action="" method="GET">
-                                <input type="hidden" name="product-title" value="Activewear">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item">Size :
-                                                <input type="hidden" name="product-size" id="product-size" value="S">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">S</span>
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">M</span>
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success btn-size">L</span>
-                                            </li>
-                                            <li class="list-inline-item"><span
-                                                    class="btn btn-success btn-size">XL</span></li>
-                                        </ul>
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{$pro->id}}">
+                                <div class="p-t-33">
+                                    <div class="flex-w flex-r-m p-b-10">
+                                        <div class="size-203 flex-c-m respon6">
+                                            Số đo
+                                        </div>
+                                        <div class="size-204 respon6-next">
+                                            <div class="rs1-select2 bor8 bg0">
+                                                <select class="js-select2" name="size_id">
+                                                    <option>Vui lòng chọn kích thước</option>
+                                                    @foreach($sizes as $size)
+                                                        @if($pro->category_id==$size->category_id)
+                                                            <option
+                                                                value="{{$size->id}}">{{$size->size_number}}</option>
+                                                        @endif
+                                                    @endforeach
+
+                                                </select>
+                                                <div class="dropDownSelect2"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <ul class="list-inline pb-3">
-                                            <li class="list-inline-item text-right">
-                                                Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity"
-                                                       value="1">
-                                            </li>
-                                            <li class="list-inline-item"><span class="btn btn-success"
-                                                                               id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary"
-                                                                               id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success"
-                                                                               id="btn-plus">+</span></li>
-                                        </ul>
+
+                                    <div class="flex-w flex-r-m p-b-10">
+                                        <div class="col size-204 flex-w flex-m respon6-next">
+                                            <div class="size-203 flex-c-m respon6">
+                                                Số lượng
+                                            </div>
+                                            <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                                                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                </div>
+
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number"
+                                                       name="quantity" value="1">
+
+                                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <button
+                                                    class="flex-c-m stext-101 cl0 size-101 btn btn-warning bor1 hov-btn1 p-lr-15 ml-5 trans-04 js-addcart-detail">
+                                                    Add to cart
+                                                </button>
+                                                <button
+                                                    class="flex-c-m stext-101 size-101 btn btn-outline-danger bor1 hov-btn1 p-lr-15 ml-5 trans-04 js-addcart-detail">
+                                                    Mua ngay
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row pb-3">
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">
-                                            Buy
-                                        </button>
-                                    </div>
-                                    <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit"
-                                                value="addtocard">Add To Cart
-                                        </button>
-                                    </div>
-                                </div>
+
                             </form>
+                            <p class="justify-content-center p-l-70">Gọi đặt mua /Zalo <strong>034548pppp</strong>(8:00-22:00)
+                            </p>
+                            <div class="row mt-5 sale ml-1 mb-5">
+                                <div class="col-sm">
+                                    Giao hàng toàn quốc
+                                </div>
+                                <div class="col-sm">
+                                    Đổi trả dễ dàng
+                                </div>
+                                <div class="col-sm">
+                                    Quà tặng hấp dẫn
+                                </div>
+                                <div class="col-sm">
+                                    Cam kết chính hãng
+                                </div>
+                            </div>
+                            <h6>Mô tả:</h6>
+                            <div>
+                                {!! $pro->description !!}
+                            </div>
 
                         </div>
                     </div>
@@ -141,9 +164,38 @@
             width: 310px !important;
             height: 310px;
         }
-        .img-custom{
+
+        .img-custom {
             width: 700px;
         }
+
+        .sale {
+            margin-bottom: 2px;
+            margin-top: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px dashed #ef0b0b;
+            font-size: 15px;
+            width: 100%;
+        }
+
+        .sale .title {
+            background: #e31616;
+            padding: 2px 20px;
+            margin-top: -24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+            display: block;
+            max-width: 207px;
+            border-radius: 99px;
+        }
+
+        .sale ul {
+            margin-bottom: 4px;
+        }
+
     </style>
 @endsection
 @section('js')
@@ -167,4 +219,5 @@
         });
         <!-- End Slider Script -->
     </script>
+
 @endsection

@@ -223,7 +223,6 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-
                         <li class="nav-item">
                             <a href="{{ route('info') }}" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
@@ -418,13 +417,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.revenue') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Báo cáo doanh thu</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.inventory') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thống kê hàng tồn</p>
                                     </a>
@@ -482,12 +481,6 @@
                 </div><!-- /.container-fluid -->
             </div>
             <!-- /.content -->
-
-
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-
         </div>
         <!-- /.content-wrapper -->
 

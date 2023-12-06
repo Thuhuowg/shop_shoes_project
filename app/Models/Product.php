@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductSize;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon;
 
 class Product extends Model
 {
@@ -29,5 +31,11 @@ class Product extends Model
     }
     public function sizes () {
         return $this->belongsToMany(Size::class,'product_sizes','product_id','size_id')->wherePivot('product_id');
+    }
+    public function productSizes(){
+            return $this->hasMany(ProductSize::class);
+    }
+    public function orders(){
+        return $this->hasMany(Order::class);
     }
 }

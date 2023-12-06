@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Category;
+use App\Models\ProductSize;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Carbon;
 
 class ProductController extends Controller
 {
@@ -140,5 +142,16 @@ class ProductController extends Controller
         $pro_restore=Product::withTrashed()->find(($id));
         $pro_restore->restore();
         return redirect()->route('list.products');
+    }
+    public function inventory(){
+        $products_pag = Product::paginate(5)->withQueryString();
+        // $productId=Product::find(1)->productSizes->sum('quantity');
+        // dd($productId);
+        $productSizes=ProductSize::all();
+        // dd($productSizes);
+        return view('admin.statistic.inventory',compact('products_pag'));
+    }
+    public function revenue(){
+        return view('admin.statistic.revenue');
     }
 }

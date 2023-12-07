@@ -12,6 +12,7 @@ use mysql_xdevapi\Exception;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Carbon;
+use function App\Helpers\function\price_sale;
 
 class ProductController extends Controller
 {
@@ -65,7 +66,9 @@ class ProductController extends Controller
             'image.required' => 'Yêu cầu nhập hình ảnh ',
             'category_id.required' => 'Yêu cầu chọn danh mục'
         ]);
-
+        $price=intval($request->price_default);
+        $discount=intval($request->voucher_sale);
+        $price_sale=price_sale($price,$discount);
         Product::create([
             'name' => $request->name,
             'type_id' => $request->type_id,
@@ -73,7 +76,7 @@ class ProductController extends Controller
             'slug' => $request->slug,
             'description' => $request->description,
             'price_default' => $request->price_default,
-            'price_sale' => $request->price_sale,
+            'price_sale' => $price_sale,
             'voucher_sale' => $request->voucher_sale,
             'image' => $request->image,
             'image_list' => $request->image_list

@@ -115,7 +115,11 @@
                                                 </div>
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number"
+<<<<<<< HEAD
                                                     id="quantity" name="quantity" value="1">
+=======
+                                                       name="quantity" placeholder="0">
+>>>>>>> 7a0851cf251f2ce61aba3c6b03b275c6526ae2d7
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                     <i class="fs-16 zmdi zmdi-plus" id="plus"></i>

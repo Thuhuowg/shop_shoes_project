@@ -27,8 +27,9 @@ Route::get('/home', function(){
     return view('layoutClient.fe');
 })->name('home');
 Route::get('/product',[ProductController::class,'index'])->name('client.products');
-Route::get('/cart',function (){
-    return view('client.payment');
+
+Route::get('/test',function (){
+    return view('client.login');
 });
 Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
 Route::get('/dashboard', function () {
@@ -52,6 +53,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/list-product',[ProductController::class,'index_admin'])->name('list.products');
     Route::get('/list-product-quantity',[QuantityController::class,'index'])->name('list.quantities');
     Route::get('/list-banners',[\App\Http\Controllers\BannerController::class,'index'])->name('list.banners');
+    Route::get('/list-admin',[\App\Http\Controllers\AdminController::class,'list'])->name('list.admin');
 });
 Route::middleware('admin')->group(function () {
     Route::get('/add-category',[CategoryController::class,'create'])->name('add.category');

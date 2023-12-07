@@ -752,7 +752,7 @@
                         Chính sách
                     </h4>
 
-                    <ul>
+                    <<<<<<< HEAD <ul>
                         <li class="p-b-10">
                             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
                                 Chính sách vận chuyển
@@ -770,13 +770,59 @@
                                 Đổi/trả hàng
                             </a>
                         </li>
+                        =======
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+
+                        <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                        </a>
+                        @if (Route::has('login'))
+                            @auth
+                                <span class="has-children">
+
+                                    <button class=" text-sm underline"
+                                        data-toggle="dropdown">{{ \Illuminate\Support\Facades\Auth::user()->name }}</button>
+                                    <ul class="dropdown-menu btn-secondary">
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+
+                                                <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                                    {{ __('Đăng xuất') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </span>
+                            @else
+                                <div class="dropdown">
+                                    <button class="btn dropdown-toggle icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11"
+                                        type="button" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="zmdi zmdi-account"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @if (Route::has('register'))
+                                            <a class="dropdown-item" href="{{ route('login') }}">Đăng nhập</a>
+                                        @endif
+                                        @if (Route::has('register'))
+                                            <a class="dropdown-item" href="{{ route('register') }}">Đăng kí</a>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endauth
+                        @endif
+                        >>>>>>> 7a0851cf251f2ce61aba3c6b03b275c6526ae2d7
 
                         <li class="p-b-10">
                             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
                                 Bảo mật thông tin
                             </a>
                         </li>
-                    </ul>
+                        </ul>
                 </div>
 
                 <div class="col-sm-6 col-lg-3 p-b-50">
@@ -830,42 +876,58 @@
                 </div>
             </div>
 
-            <div class="p-t-40">
+            <<<<<<< HEAD <div class="p-t-40">
                 <div class="flex-c-m flex-w p-b-18">
                     <a href="#" class="m-all-1">
                         <img src="images/icons/icon-pay-01.png" alt="ICON-PAY">
                     </a>
+                    =======
+                    <div class="row isotope-grid">
+                        @foreach ($products as $product)
+                            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                                <!-- Block2 -->
+                                <div class="block2">
+                                    <div class="block2-pic hov-img0">
+                                        <img src="uploads/{{ $product->image }}" alt="IMG-PRODUCT">
+                                        <span class="badge badge-danger">{{ $product->voucher_sale }}</span>
+                                        <a href="{{ route('product_detail', $product->slug) }}"
+                                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                            Xem chi tiết
+                                        </a>
+                                    </div>
+                                    >>>>>>> 7a0851cf251f2ce61aba3c6b03b275c6526ae2d7
 
-                    <a href="#" class="m-all-1">
-                        <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-                    </a>
+                                    <a href="#" class="m-all-1">
+                                        <img src="images/icons/icon-pay-02.png" alt="ICON-PAY">
+                                    </a>
 
-                    <a href="#" class="m-all-1">
-                        <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-                    </a>
+                                    <a href="#" class="m-all-1">
+                                        <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
+                                    </a>
 
-                    <a href="#" class="m-all-1">
-                        <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-                    </a>
+                                    <a href="#" class="m-all-1">
+                                        <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
+                                    </a>
 
-                    <a href="#" class="m-all-1">
-                        <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-                    </a>
-                </div>
+                                    <a href="#" class="m-all-1">
+                                        <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
+                                    </a>
+                                </div>
 
-                <p class="stext-107 cl6 txt-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | Made with <i class="fa fa-heart-o"
-                        aria-hidden="true"></i> by <a href="#" target="_blank">Huogthu</a> &amp; distributed by
-                    <a href="#" target="_blank">Team 10</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                <p class="stext-107 cl6 txt-center">
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                    Copyright &copy;
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script> All rights reserved | Made with <i class="fa fa-heart-o"
+                                        aria-hidden="true"></i> by <a href="#" target="_blank">Huogthu</a>
+                                    &amp; distributed by
+                                    <a href="#" target="_blank">Team 10</a>
+                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
-                </p>
-            </div>
-        </div>
+                                </p>
+                            </div>
+                    </div>
     </footer>
 
 

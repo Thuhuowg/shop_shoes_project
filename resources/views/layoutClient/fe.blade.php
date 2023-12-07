@@ -69,7 +69,7 @@
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
-                    <ul class="main-menu">
+                    <ul class="main-menu text-6xl">
                         <li class="active-menu">
                             <a href="{{route('home')}}">Trang chủ</a>
                         </li>
@@ -100,7 +100,7 @@
                         </li>
 
                         <li>
-                            <a href="contact.html">Liên hệ</a>
+                            <a href="contact.html">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -352,9 +352,12 @@
     <div class="wrap-slick1">
         <div class="slick1">
             @foreach($banners as $banner)
-            <div class="item-slick1" style="background-image: url('uploads/{{$banner->image}}');margin-top:80px" >
+                @if($banner->status==1)
+            <div class="item-slick1" style="background-image: url('uploads/{{$banner->image}}');margin-top:80px;width: 1366px; height: 604px;" >
             </div>
+                @endif
                 @endforeach
+
         </div>
     </div>
 </section>
@@ -364,9 +367,9 @@
 <div class="sec-banner bg0 p-t-80 p-b-50">
     <div class="container">
         <div class="row">
-            <?php $name=0 ?>
+            <?php $num_t=0 ?>
             @foreach($types as $type)
-                @if($name < 3)
+                @if($num_t < 3)
             <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
@@ -382,7 +385,7 @@
 
             </div>
                 @endif
-                <?php ++$name ?>
+                <?php ++$num_t ?>
             @endforeach
         </div>
     </div>
@@ -640,7 +643,7 @@
                 <div class="block2">
                     <div class="block2-pic hov-img0">
                         <img src="uploads/{{$product->image}}" alt="IMG-PRODUCT">
-
+                        <span class="badge badge-danger">Giảm 50%</span>
                         <a href="{{route('product_detail',$product->slug)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                             Xem chi tiết
                         </a>

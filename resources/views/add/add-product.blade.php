@@ -101,11 +101,7 @@
                             <input type="number" name="price_default" class="form-control price_default" placeholder="Enter ...">
                         </div>
                         <div class="form-group">
-                            <label for="price_sale">Giá sản phẩm (sale) </label>
-                            <input type="number" id="price_sale" name="price_sale" class="form-control" placeholder="Enter ...">
-                        </div>
-                        <div class="form-group">
-                            <label for="voucher_sale">Sale (%) </label>
+                            <label for="voucher_sale">Discount (%) </label>
                             <input type="number" id="voucher_sale" name="voucher_sale" class="form-control" placeholder="Enter ...">
                         </div>
                         <div class="form-group ">

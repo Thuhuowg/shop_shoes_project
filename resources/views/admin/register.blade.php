@@ -1,7 +1,7 @@
 @extends('admin.fe')
 @section('content')
-    <div class="container">
-<div class="justify-content-center register-box ">
+    <div class="row">
+<div class="col-12 ">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <a href="../../index2.html" class="h1"><b>Admin</b></a>
@@ -63,7 +63,9 @@
                     <div class="col-5 justify-content-center">
                         <button type="submit" class="btn btn-primary btn-block">Đăng kí</button>
                     </div>
-
+                    <div class="col-5 justify-content-center">
+                        <a class="btn btn-secondary btn-block">Huỷ</a>
+                    </div>
                 </div>
             </form>
         </div>

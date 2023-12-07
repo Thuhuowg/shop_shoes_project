@@ -15,6 +15,11 @@ class AdminController extends Controller
         //
         return view('admin.info-admin');
     }
+    public function list()
+    {
+        //
+        return view('admin.list-admin');
+    }
 
     public function login()
     {

@@ -111,11 +111,11 @@
                         <i class="zmdi zmdi-search"></i>
                     </div>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11" >
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
 
-                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                    <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
                         <i class="zmdi zmdi-favorite-outline"></i>
                     </a>
                     @if(Route::has('login'))
@@ -124,7 +124,17 @@
 
                             <button class=" text-sm underline" data-toggle="dropdown">{{\Illuminate\Support\Facades\Auth::user()->name}}</button>
                         <ul class="dropdown-menu btn-secondary">
-                            <li><a class=" btn  dropdown-toggle " href="{{route('logout')}}">Đăng xuất</a></li>
+                            <li>
+                               <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Đăng xuất') }}
+                            </x-dropdown-link>
+                        </form>
+                            </li>
                         </ul></span>
 
                         @else
@@ -134,10 +144,10 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     @if(Route::has('register'))
-                                    <a class="dropdown-item" href="#">Đăng nhập</a>
+                                    <a class="dropdown-item" href="{{route('login')}}">Đăng nhập</a>
                                         @endif
                                     @if(Route::has('register'))
-                                    <a class="dropdown-item" href="#">Đăng kí</a>
+                                    <a class="dropdown-item" href="{{route('register')}}">Đăng kí</a>
                                         @endif
                                 </div>
                             </div>
@@ -643,7 +653,7 @@
                 <div class="block2">
                     <div class="block2-pic hov-img0">
                         <img src="uploads/{{$product->image}}" alt="IMG-PRODUCT">
-                        <span class="badge badge-danger">Giảm 50%</span>
+                        <span class="badge badge-danger">{{$product->voucher_sale}}</span>
                         <a href="{{route('product_detail',$product->slug)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                             Xem chi tiết
                         </a>

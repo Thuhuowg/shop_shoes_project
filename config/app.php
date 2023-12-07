@@ -169,6 +169,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\FunctionServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+
     ])->toArray(),
 
     /*
@@ -185,6 +187,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Function' => App\Helpers\function::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+
     ])->toArray(),
 
 ];

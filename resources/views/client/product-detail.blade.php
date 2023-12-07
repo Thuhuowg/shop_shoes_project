@@ -5,25 +5,29 @@
             <div class="row">
                 <div class="col-lg-7 mt-5">
                     <div class="card mb-3">
-                        <img class="card-img img-fluid" src="/uploads/{{$pro->image}}" alt="Card image cap"
-                             id="product-detail">
+                        <img class="card-img img-fluid" src="/uploads/{{ $pro->image }}" alt="Card image cap"
+                            id="product-detail">
                     </div>
+                    <input type="hidden" id="idProduct" value="{{ $pro->id }}">
+
+
+
                     <div class="row ">
                         <!--Start Controls-->
                         <!--End Controls-->
                         <!--Start Carousel Wrapper-->
                         <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item"
-                             data-bs-ride="carousel">
+                            data-bs-ride="carousel">
                             <!--Start Slides-->
                             <div class="carousel-inner product-links-wap img-custom" role="listbox">
                                 <!--First slide-->
                                 <div class="">
                                     <div class="row ">
-                                        @foreach($image_arr as $image)
+                                        @foreach ($image_arr as $image)
                                             <div class="col-5 ml-3 p-0 image-gallery">
-                                                <a href="/uploads/{{$image}}">
-                                                    <img class="card-img mt-3 img-list"
-                                                         src="/uploads/{{$image}}" alt="Product Image 1">
+                                                <a href="/uploads/{{ $image }}">
+                                                    <img class="card-img mt-3 img-list" src="/uploads/{{ $image }}"
+                                                        alt="Product Image 1">
                                                 </a>
                                             </div>
                                         @endforeach
@@ -38,21 +42,22 @@
                 <div class="col-lg-5 mt-5 position-sticky fixed">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="">{{$pro->name}} </h4>
+                            <h4 class="">{{ $pro->name }} </h4>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <h6>Thương hiệu:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted active"><a href="{{route('home')}}"><strong>Anta</strong></a>
+                                    <p class="text-muted active"><a href="{{ route('home') }}"><strong>Anta</strong></a>
                                     </p>
                                 </li>
                             </ul>
                             <div class="row ml-2">
                                 <p class="text-h3 py-2 text-danger">
-                                    <strong>{{number_format($pro->price_sale)}}</strong><small>đ</small></p>
+                                    <strong>{{ number_format($pro->price_sale) }}</strong><small>đ</small>
+                                </p>
                                 <p class="ml-3 text-h3 py-2">
-                                    <del>{{number_format($pro->price_default)}}<small>đ</small></del>
+                                    <del>{{ number_format($pro->price_default) }}<small>đ</small></del>
                                 </p>
                             </div>
                             <p class="py-2">
@@ -74,9 +79,9 @@
                                 </ul>
                             </div>
 
-                            <form action="" method="GET">
+                            <form action="{{ route('fe.cart.addToCart') }}" method="post">
                                 @csrf
-                                <input type="hidden" name="product_id" value="{{$pro->id}}">
+                                <input type="hidden" name="product_id" value="{{ $pro->id }}">
                                 <div class="p-t-33">
                                     <div class="flex-w flex-r-m p-b-10">
                                         <div class="size-203 flex-c-m respon6">
@@ -84,12 +89,12 @@
                                         </div>
                                         <div class="size-204 respon6-next">
                                             <div class="rs1-select2 bor8 bg0">
-                                                <select class="js-select2" name="size_id">
-                                                    <option>Vui lòng chọn kích thước</option>
-                                                    @foreach($sizes as $size)
-                                                        @if($pro->category_id==$size->category_id)
-                                                            <option
-                                                                value="{{$size->id}}">{{$size->size_number}}</option>
+                                                <select class="js-select2" name="size_id" id="sizeId">
+                                                    <option value="0">Vui lòng chọn kích thước</option>
+                                                    @foreach ($sizes as $size)
+                                                        @if ($pro->category_id == $size->category_id)
+                                                            <option value="{{ $size->id }}">{{ $size->size_number }}
+                                                            </option>
                                                         @endif
                                                     @endforeach
 
@@ -110,18 +115,20 @@
                                                 </div>
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                                       name="quantity" value="1">
+                                                    id="quantity" name="quantity" value="1">
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                    <i class="fs-16 zmdi zmdi-plus" id="plus"></i>
                                                 </div>
                                             </div>
                                             <div class="row mt-3">
-                                                <button
+                                                <button id="addToCart" type="button"
+                                                    data-url="{{ route('fe.cart.addToCart') }}"
                                                     class="flex-c-m stext-101 cl0 size-101 btn btn-warning bor1 hov-btn1 p-lr-15 ml-5 trans-04 js-addcart-detail">
                                                     Add to cart
                                                 </button>
-                                                <button
+                                                <button id="buttonBuy" type="button"
+                                                    data-url="{{ route('fe.cart.addToCart') }}"
                                                     class="flex-c-m stext-101 size-101 btn btn-outline-danger bor1 hov-btn1 p-lr-15 ml-5 trans-04 js-addcart-detail">
                                                     Mua ngay
                                                 </button>
@@ -131,7 +138,8 @@
                                 </div>
 
                             </form>
-                            <p class="justify-content-center p-l-70">Gọi đặt mua /Zalo <strong>034548pppp</strong>(8:00-22:00)
+                            <p class="justify-content-center p-l-70">Gọi đặt mua /Zalo
+                                <strong>034548pppp</strong>(8:00-22:00)
                             </p>
                             <div class="row mt-5 sale ml-1 mb-5">
                                 <div class="col-sm">
@@ -195,11 +203,10 @@
         .sale ul {
             margin-bottom: 4px;
         }
-
     </style>
 @endsection
 @section('js')
-    <script>
+    {{-- <script>
         $('.image-gallery').magnificPopup({
             delegate: 'a',
             type: 'image',
@@ -212,12 +219,97 @@
                 enabled: true,
                 duration: 300,
                 easing: 'ease-in-out',
-                opener: function (openerElement) {
+                opener: function(openerElement) {
                     return openerElement.is('img') ? openerElement : openerElement.find('img');
                 }
             }
         });
-        <!-- End Slider Script -->
-    </script>
+        !--End Slider Script-- >
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
+
+            $('#addToCart').click(function() {
+                let idProduct = $("#idProduct").val();
+                let quantity = $("#quantity").val();
+                let sizeId = $("#sizeId").val();
+                let url = $(this).attr('data-url');
+                if (sizeId == 0) {
+                    alert('Bạn cần chọn kích cỡ giày !');
+                    return false;
+                };
+                let data = {
+                    'product_id': idProduct,
+                    'quantity': quantity,
+                    'size_id': sizeId
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        // window.location.href = "/cart/list";
+                        // let cartCount = data.cartCount;
+                        $("#cart").attr('data-notify', data.cartCount);
+                        alert("Thêm giỏ hàng thành công");
+
+                        // console.log(data.imagePath);
+                        // console.log(data.product);
+                        // console.log(data.test);
+                        // $("#count").text(cartCount);
+
+
+                    }
+                });
+            })
+
+            $('#buttonBuy').click(function() {
+                let idProduct = $("#idProduct").val();
+                let quantity = $("#quantity").val();
+                let sizeId = $("#sizeId").val();
+                let url = $(this).attr('data-url');
+                if (sizeId == 0) {
+                    alert('Bạn cần chọn kích cỡ giày !');
+                    return false;
+                };
+                let data = {
+                    'product_id': idProduct,
+                    'quantity': quantity,
+                    'size_id': sizeId
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        // window.location.href = "/cart/list";
+                        // let cartCount = data.cartCount;
+                        window.location.href = "/cart/list";
+
+
+                        // console.log(data.imagePath);
+                        // console.log(data.product);
+                        // console.log(data.test);
+                        // $("#count").text(cartCount);
+
+
+                    }
+                });
+            })
+
+
+            // $ajax({
+            //     type: 'POST',
+            //     url: url,
+            //     data: d
+            // })
+
+        })
+    </script>
 @endsection

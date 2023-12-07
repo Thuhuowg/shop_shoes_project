@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\QuantityController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,13 @@ Route::middleware('admin')->group(function (){
     Route::get('/delete-product/{id}',[ProductController::class,'destroy'])->name('delete.product');
     Route::get('/trash-product',[ProductController::class,'trash'])->name('trash.product');
     Route::get('/restore-product/{id}',[ProductController::class,'restore'])->name('restore.product');
+});
+Route::prefix('/cart')->group(function(){
+    Route::post('/addToCart',[CartController::class,'addToCart'])->name('fe.cart.addToCart');
+    Route::post('/update/{rowId}',[CartController::class,'update'])->name('fe.cart.update');
+    Route::get('/list',[CartController::class,'index'])->name('fe.cart.list');
+    Route::get('/destroy',[CartController::class,'destroy'])->name('fe.cart.destroy');
+    Route::get('/delete/{rowId}',[CartController::class,'delete'])->name('fe.cart.delete');
 });
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

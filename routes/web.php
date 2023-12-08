@@ -8,6 +8,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\QuantityController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,10 @@ Route::prefix('/cart')->group(function(){
     Route::get('/list',[CartController::class,'index'])->name('fe.cart.list');
     Route::get('/destroy',[CartController::class,'destroy'])->name('fe.cart.destroy');
     Route::get('/delete/{rowId}',[CartController::class,'delete'])->name('fe.cart.delete');
+});
+Route::prefix('/order')->group(function(){
+    Route::get('/checkout',[OrderController::class,'checkout'])->name('fe.order.checkout');
+
 });
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

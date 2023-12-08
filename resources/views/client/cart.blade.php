@@ -118,7 +118,7 @@
 
                                 <button
                                     class="flex-c-m stext-101 cl0 mt-3 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                                    <a class="">Thanh toán</a>
+                                    <a class="" href="{{ route('fe.order.checkout') }}">Thanh toán</a>
                                 </button>
                             </div>
                         </div>

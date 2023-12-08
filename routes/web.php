@@ -9,6 +9,7 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\QuantityController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,7 +85,14 @@ Route::prefix('/cart')->group(function(){
 });
 Route::prefix('/order')->group(function(){
     Route::get('/checkout',[OrderController::class,'checkout'])->name('fe.order.checkout');
+    Route::get('/thanks',[OrderController::class,'thanks'])->name('fe.order.thanks');
+    Route::post('/doCheckout',[OrderController::class,'doCheckout'])->name('fe.order.doCheckout');
+    Route::get('/filterDistrictByProvince',[OrderController::class,'filterDistrictByProvince'])->name('fe.order.filterDistrictByProvince');
+    Route::get('/filterDistrictByDistrict',[OrderController::class,'filterDistrictByDistrict'])->name('fe.order.filterDistrictByDistrict');
 
+});
+Route::prefix('/mail')->group(function(){
+   Route::get('/confirm',[MailController::class,'confirm'])->name('fe.mail.confirm');
 });
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

@@ -13,15 +13,10 @@
                 @endauth
 
                 <p>
-                    Bạn đã đặt hàng tại hệ thống của chúng tôi,vui lòng kiểm tra lại thông tin đơn hàng của
-                    bạn và nhấn vào nút xác nhận đơn hàng
+                    Cảm ơn bạn đã đặt hàng tại shop!
+
                 </p>
-                <p>
-                    <a style="display:inline-block;background:blue;color:#fff;padding:7px 25px;font-weight:bold"
-                        href="{{ route('fe.mail.confirmSuccessMail', ['transaction_id' => $mailData['transaction']->id, 'cartTotal' => $mailData['cartTotal']]) }}"
-                        target="_blank">Xác
-                        nhận đơn hàng của bạn</a>
-                </p>
+                <p>Chúc bạn có một ngày an lành !</p>
 
             </div>
         </div>
@@ -84,21 +79,7 @@
 
     <hr>
     <h3>Trạng thái đơn hàng:</h3>
-    <h4>Chưa xác nhận đơn hàng</h4>
-    <div class = "" style="text-align:center">
-        <p>
-            Bạn đã đặt hàng tại hệ thống của chúng tôi,vui lòng kiểm tra lại thông tin đơn hàng của
-            bạn và nhấn vào nút xác nhận đơn hàng
-        </p>
-        <p>
-        <p>
-            <a style="display:inline-block;background:blue;color:#fff;padding:7px 25px;font-weight:bold"
-                href="{{ route('fe.mail.confirmSuccessMail', ['transaction_id' => $mailData['transaction']->id, 'cartTotal' => $mailData['cartTotal']]) }}"
-                target="_blank">Xác
-                nhận đơn hàng của bạn</a>
-        </p>
+    <h4>Đã xác nhận </h4>
 
-        </p>
-    </div>
 
 </div>

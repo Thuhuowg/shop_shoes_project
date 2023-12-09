@@ -56,7 +56,5 @@ class CartController extends Controller
         $cartCount=Cart::count();
         $cartTotal=Cart::total();
         return response()->json(['message'=>'xóa sản phẩm thành công','cartCount'=>$cartCount,'cartTotal'=>$cartTotal]);
-
-
     }
 }

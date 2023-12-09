@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Size;
 use App\Models\Product;
+use App\Models\Transaction;
 
 class Order extends Model
 {
@@ -24,6 +25,9 @@ class Order extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+    public function transaction(){
+        return $this->belongsTo(Transaction::class);
     }
 
 }

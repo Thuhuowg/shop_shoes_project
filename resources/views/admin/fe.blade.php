@@ -332,33 +332,13 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.order.list') }}" class="nav-link">
                                 <i class="nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Quản lý đơn hàng
-                                    <i class="fas fa-angle-left right"></i>
+
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng chờ xác nhận</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng chờ vận chuyển</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Đơn hàng đã hoàn thành</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -474,6 +454,14 @@
                     <div class="row mb-2">
                         <div class="col-sm-12">
                             @section('content')
+                                <div class="col-lg-12" id="alert">
+                                    @if (Session::has('success'))
+                                        <div class="alert alert-success">{{ session('success') }}</div>
+                                    @endif
+                                    @if (Session::has('error'))
+                                        <div class="alert alert-danger">{{ session('error') }}</div>
+                                    @endif
+                                </div>
 
                             @show
                         </div><!-- /.col -->

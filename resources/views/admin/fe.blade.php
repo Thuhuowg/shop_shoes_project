@@ -370,13 +370,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('list.admin')}}" class="nav-link">
+                                    <a href="{{route('list.client')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách khách hàng</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{route('admin.register')}}" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm mới khách hàng</p>
                                     </a>
@@ -394,7 +394,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{route('list.admin')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách nhân viên</p>
                                     </a>

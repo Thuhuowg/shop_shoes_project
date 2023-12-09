@@ -50,8 +50,8 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 @font-face {
-  font-family: Poppins-ExtraLight;
-  src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
+  font-family: Lora-Regular;
+  src: url('../fonts/font-add/Lora-Regular.ttf');
 }
 
 @font-face {
@@ -560,7 +560,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .wrap-search-header input {
-  font-family: Poppins-ExtraLight;
+  font-family: Lora-Regular;
   font-size: 50px;
   line-height: 1.2;
   color: #333;
@@ -1323,7 +1323,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .caption-dots-slick1 {
-  font-family: Poppins-ExtraLight;
+  font-family: Lora-Regular;
   font-size: 16px;
   line-height: 1.3;
   color: #fff;

@@ -18,7 +18,8 @@ class AdminController extends Controller
     public function list()
     {
         //
-        return view('admin.list-admin');
+        $ad_list=User::where(['role'=>1])->get();
+        return view('admin.list-admin',compact('ad_list'));
     }
 
     public function login()

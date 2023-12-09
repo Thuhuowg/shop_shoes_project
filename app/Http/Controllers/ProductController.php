@@ -21,11 +21,17 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function home (){
+        $search = request()->search ?? "";
+        $pros = Product::where('name', 'like', "%$search%")->paginate(12)->withQueryString();
+        return view('home',compact('pros','search'));
+    }
     public function index()
     {
         //
-        $pros=Product::paginate(12);
-        return view('client.product-list',compact('pros'));
+        $search = request()->search ?? "";
+        $pros = Product::where('name', 'like', "%$search%")->paginate(12)->withQueryString();
+        return view('client.product-list',compact('pros','search'));
     }
 
     public function index_admin()
@@ -95,11 +101,7 @@ class ProductController extends Controller
     {
         //
         $pro=Product::where('slug',$slug)->first();
-        $image=$pro->image_list;
-        $str_1=str_replace('[', '', $image);
-        $str_2=str_replace(']', '', $str_1);
-        $str_3=explode ( "," , $str_2);
-        $image_arr=str_replace('"', '', $str_3);
+        $image_arr=json_decode($pro->image_list);
 
         $sizes=Size::all();
 //        foreach ($test4 as $value) {
@@ -115,6 +117,11 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         //
+        $pro=Product::find($id);
+        $cate=Category::where('id',$pro->category_id)->first();
+        $type_edit=Type::where('id',$pro->type_id)->first();
+        $image_arr=json_decode($pro->image_list);
+        return view('edit.edit-product',compact('pro','cate','type_edit','image_arr'));
 
     }
 
@@ -124,6 +131,27 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->offsetUnset('_token');
+        $price=intval($request->price_default);
+        $discount=intval($request->voucher_sale);
+        $price_sale=price_sale($price,$discount);
+        Product::where(['id'=>$id])->update([
+            'name' => $request->name,
+            'type_id' => $request->type_id,
+            'category_id' => $request->category_id,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'price_default' => $request->price_default,
+            'price_sale' => $price_sale,
+            'voucher_sale' => $request->voucher_sale,
+            'image' => $request->image,
+            'image_list' => $request->image_list
+        ]);
+        try {
+            return redirect()->route('list.products');
+        } catch (Exception $e) {
+            echo 'Message:' . $e->getMessage();
+        }
     }
 
     /**

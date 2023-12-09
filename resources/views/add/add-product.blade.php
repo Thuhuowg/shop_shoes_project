@@ -75,7 +75,7 @@
 {{--                        </div>--}}
                         <div class="form-group">
                             <label for="description"> Mô tả </label>
-                            <textarea id="summernote" name="description" class="form-control" placeholder="mô tả về loại phòng"></textarea>
+                            <textarea id="summernote" name="description" class="form-control" placeholder="mô tả về sản phẩm"></textarea>
                         </div>
                         <div class="form-group ">
                             <label>Tải nhiều ảnh </label>
@@ -85,10 +85,6 @@
                                     <i class="fas fa-folder-open"></i>
                                 </button>
                             </div>
-{{--                            <div>--}}
-{{--                                <iframe src="{{url('http://127.0.0.1:8000/filemanager/dialog.php?field_id=image')}}" style="width: 100%; height:500px; overflow-y: auto; border: none"  ></iframe>--}}
-
-{{--                            </div>--}}
                             <div class="row" id="show_image_list">
 
                             </div>
@@ -120,7 +116,7 @@
                 <div class="col-sm-2 float-right mb-3 mt-3 justify-content-center">
                     <div class="row d-flex" style="gap: 5px">
                         <button type="submit" class="col btn btn-block btn-outline-primary">Gửi </button>
-                        <a href="#" class="col mt-0 btn btn-block btn-outline-secondary">Huỷ</a>
+                        <a href="{{route('list.products')}}" class="col mt-0 btn btn-block btn-outline-secondary">Huỷ</a>
                     </div>
                 </div>
             </div>

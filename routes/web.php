@@ -24,10 +24,11 @@ use App\Http\Controllers\OrderController;
 Route::get('/', function () {
     return redirect()->route('home');
 });
-Route::get('/home', function(){
-    return view('layoutClient.fe');
-})->name('home');
+Route::get('/trang-chu',[ProductController::class,'home'])->name('home');
 Route::get('/product',[ProductController::class,'index'])->name('client.products');
+Route::get('/danh-muc-san-pham/{name}',[CategoryController::class,'show'])->name('client.category');
+Route::get('/danh-muc/{name}/loai/{slug}',[TypeController::class,'show'])->name('client.type');
+
 
 Route::get('/test',function (){
     return view('client.login');
@@ -55,6 +56,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/list-product-quantity',[QuantityController::class,'index'])->name('list.quantities');
     Route::get('/list-banners',[\App\Http\Controllers\BannerController::class,'index'])->name('list.banners');
     Route::get('/list-admin',[\App\Http\Controllers\AdminController::class,'list'])->name('list.admin');
+    Route::get('/list-client',[\App\Http\Controllers\UserController::class,'index'])->name('list.client');
 });
 Route::middleware('admin')->group(function () {
     Route::get('/add-category',[CategoryController::class,'create'])->name('add.category');
@@ -69,11 +71,17 @@ Route::middleware('admin')->group(function () {
     Route::post('/add-quantity',[QuantityController::class,'store'])->name('post-add.quantity');
     Route::get('/add-banner',[\App\Http\Controllers\BannerController::class,'create'])->name('add.banner');
     Route::post('/add-banner',[\App\Http\Controllers\BannerController::class,'store'])->name('post-add.banner');
+    Route::get('/register-admin',[\App\Http\Controllers\AdminController::class,'register'])->name('admin.register');
+
 });
 Route::middleware('admin')->group(function (){
     Route::get('/delete-product/{id}',[ProductController::class,'destroy'])->name('delete.product');
     Route::get('/trash-product',[ProductController::class,'trash'])->name('trash.product');
     Route::get('/restore-product/{id}',[ProductController::class,'restore'])->name('restore.product');
+});
+Route::middleware('admin')->group(function (){
+    Route::get('/edit-product/{id}',[ProductController::class,'edit'])->name('edit.product');
+    Route::post('/edit-product/{id}',[ProductController::class,'update'])->name('update.product');
 });
 Route::prefix('/cart')->group(function(){
     Route::post('/addToCart',[CartController::class,'addToCart'])->name('fe.cart.addToCart');

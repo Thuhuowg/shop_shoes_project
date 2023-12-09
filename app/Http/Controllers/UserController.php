@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,8 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories=Category::all();
-        return view('list.categories-list',compact('categories'));
+        $clients=User::where(['role'=>0])->get();
+        return view('list.list-client',compact('clients'));
     }
 
     /**
@@ -24,7 +23,6 @@ class CategoryController extends Controller
     public function create()
     {
         //
-       return view('add.add-category');
     }
 
     /**
@@ -33,27 +31,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        Category::create([
-            'name'=>$request->name,
-            'image'=>$request->image,
-        ]);
-        try
-        {
-            return redirect()->route('admin');
-        }catch(\Throwable $th){
-            dd($th);
-        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $name)
+    public function show(string $id)
     {
         //
-        $cate=Category::where('name',$name)->first();
-        $pros=Product::where('category_id',$cate->id)->paginate(12);
-        return view('client.product-list',compact('cate','pros'));
     }
 
     /**

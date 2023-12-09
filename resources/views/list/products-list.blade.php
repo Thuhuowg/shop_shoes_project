@@ -55,9 +55,9 @@
                                     <td class="text-danger">{{ number_format($product->price_sale) }}<small>đ</small></td>
                                     <td></td>
                                     <td>
-                                        <a href="{{route('edit.product',$product->id)}}">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sửa</button>
-                                        </a>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            <a href="{{route('edit.product',['id'=>$product->id])}}" class="text-white">Sửa</a>
+                                            </button>
                                         <button type="button" class="btn btn-danger" data-dismiss="modal">
                                             <a href="{{route('delete.product',$product->id)}}" class="text-white">Xoá</a></button>
                                     </td>

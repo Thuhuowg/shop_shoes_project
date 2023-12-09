@@ -20,14 +20,6 @@
                                 <td>{{\Illuminate\Support\Facades\Auth::user()->name}}</td>
                             </tr>
                             <tr>
-                                <th>Ngày sinh</th>
-                                <td>0</td>
-                            </tr>
-                            <tr>
-                                <th>Giới tính </th>
-                                <td>0</td>
-                            </tr>
-                            <tr>
                                 <th>SĐT</th>
                                 <td>{{\Illuminate\Support\Facades\Auth::user()->phone}}</td>
                             </tr>

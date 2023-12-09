@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TypeController extends Controller
 {
@@ -60,9 +62,16 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $name,string $slug)
     {
         //
+        $cate=Category::where('name',$name)->first();
+        $type=Type::where('slug',$slug)->first();
+        $pros=DB::table('products')
+            ->where('category_id',$cate->id)
+            ->where('type_id',$type->id)
+            ->paginate(12);
+        return view('client.product-list',compact('pros'));
     }
 
     /**

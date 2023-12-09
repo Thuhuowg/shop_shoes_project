@@ -1,28 +1,84 @@
 @extends('layoutClient.fe')
 @section('content')
+
+    <!-- Slider -->
+    <section class="section-slide">
+        <div class="wrap-slick1">
+            <div class="slick1">
+                @foreach ($banners as $banner)
+                    @if ($banner->status == 1)
+                        <div class="item-slick1"
+                             style="background-image: url('uploads/{{ $banner->image }}');margin-top:80px;width: 1366px; height: 604px;">
+                        </div>
+                    @endif
+                @endforeach
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Banner -->
+    <div class="sec-banner bg0 p-t-80 p-b-50">
+        <div class="container">
+            <div class="row">
+                <?php $num_t = 0; ?>
+                @foreach ($types as $type)
+                    @if ($num_t < 3)
+                        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                            <!-- Block1 -->
+                            <div class="block1 wrap-pic-w">
+                                <img src="uploads/{{ $type->image }}" alt="IMG-BANNER">
+                            </div>
+                            <div class="justify-content-md-center">
+                                <a href="#">
+                                            <span class="block1-name ltext-102 trans-04 p-b-8">
+                                                {{ $type->name }}
+                                            </span>
+                                </a>
+                            </div>
+
+                        </div>
+                    @endif
+                        <?php ++$num_t; ?>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product -->
     <section class="bg0 p-t-23 p-b-140">
         <div class="container">
-            <div class="flex-w flex-sb-m p-b-52 mt-5">
+            <div class="p-b-10">
+                <h3 class="ltext-103 cl5">
+                    Xem sản phẩm
+                </h3>
+            </div>
+
+            <div class="flex-w flex-sb-m p-b-52">
                 <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                     <a href="{{route('home')}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
                         Tất cả các sản phẩm
                     </a>
                     @foreach($categories as $category)
-                    <a href="{{route('client.category',['name'=>$category->name])}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                        {{$category->name}}
-                    </a>
+                        <a href="{{route('client.category',['name'=>$category->name])}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+                            {{$category->name}}
+                        </a>
                     @endforeach
 
                 </div>
 
                 <div class="flex-w flex-c-m m-tb-10">
-                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+                    <div
+                        class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                         <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                         <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                         Lọc
                     </div>
 
-                    <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+                    <div
+                        class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                         <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                         <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                         Tìm kiếm
@@ -36,7 +92,8 @@
                             <i class="zmdi zmdi-search"></i>
                         </button>
 
-                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
+                               placeholder="Search">
                     </div>
                 </div>
 
@@ -138,9 +195,9 @@
 
                             <ul>
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #222;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #222;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
                                         Black
@@ -148,9 +205,9 @@
                                 </li>
 
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
                                         Blue
@@ -158,9 +215,9 @@
                                 </li>
 
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
                                         Grey
@@ -168,9 +225,9 @@
                                 </li>
 
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
                                         Green
@@ -178,9 +235,9 @@
                                 </li>
 
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
-										<i class="zmdi zmdi-circle"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
                                         Red
@@ -188,9 +245,9 @@
                                 </li>
 
                                 <li class="p-b-6">
-									<span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
-										<i class="zmdi zmdi-circle-o"></i>
-									</span>
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
 
                                     <a href="#" class="filter-link stext-106 trans-04">
                                         White
@@ -205,23 +262,28 @@
                             </div>
 
                             <div class="flex-w p-t-4 m-r--5">
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                <a href="#"
+                                   class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Fashion
                                 </a>
 
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                <a href="#"
+                                   class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Lifestyle
                                 </a>
 
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                <a href="#"
+                                   class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Denim
                                 </a>
 
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                <a href="#"
+                                   class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Streetstyle
                                 </a>
 
-                                <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                <a href="#"
+                                   class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                     Crafts
                                 </a>
                             </div>
@@ -231,14 +293,15 @@
             </div>
 
             <div class="row isotope-grid">
-                @foreach($pros as $pro)
+                @foreach ($pros as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                         <!-- Block2 -->
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="/uploads/{{$pro->image}}" alt="IMG-PRODUCT">
-
-                                <a href="{{route('product_detail',$pro->slug)}}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                                <img src="uploads/{{ $product->image }}" alt="IMG-PRODUCT">
+                                <span class="badge badge-danger">{{ $product->voucher_sale }}%</span>
+                                <a href="{{route('product_detail',$product->slug)}}"
+                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                     Xem chi tiết
                                 </a>
                             </div>
@@ -246,18 +309,22 @@
                             <div class="block2-txt flex-w flex-t p-t-14">
                                 <div class="block2-txt-child1 flex-col-l ">
                                     <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        {{$pro->name}}
+                                        {{ $product->name }}
                                     </a>
 
                                     <span class="stext-105 cl3">
-									<del class="text-danger">{{number_format($pro->price_default)}}<small>đ</small></del> <span>{{number_format($pro->price_sale)}}<small>đ</small></span>
-								</span>
+                                                <del
+                                                    class="text-danger">{{ number_format($product->price_default) }}<small>đ</small></del>
+                                                <span>{{ number_format($product->price_sale) }}<small>đ</small></span>
+                                            </span>
                                 </div>
 
                                 <div class="block2-txt-child2 flex-r p-t-3">
                                     <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                        <img class="icon-heart1 dis-block trans-04" src="{{asset('images/icons/icon-heart-01.png')}}" alt="ICON">
-                                        <img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{asset('images/icons/icon-heart-02.png')}}" alt="ICON">
+                                        <img class="icon-heart1 dis-block trans-04"
+                                             src="images/icons/icon-heart-01.png" alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="images/icons/icon-heart-02.png" alt="ICON">
                                     </a>
                                 </div>
                             </div>
@@ -266,7 +333,29 @@
                 @endforeach
 
             </div>
-            {{$pros->links()}}
+
+            <!-- Load more -->
+            <div class="flex-c-m flex-w w-full p-t-45">
+                <a href="{{ route('client.products') }}"
+                   class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                    Load More
+                </a>
+            </div>
         </div>
     </section>
+    </div>
+    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                <img src="{{asset('images/icons/icon-close2.png')}}" alt="CLOSE">
+            </button>
+
+            <form method="get" class="wrap-search-header flex-w p-l-15">
+                <button class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+                <input class="plh3" type="text" name="search" placeholder="Tìm kiếm...">
+            </form>
+        </div>
+    </div>
 @endsection

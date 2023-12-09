@@ -27,7 +27,7 @@
         padding: 0px;
     }
 
-    s .background-image {
+    .background-image {
         background-image: url('https://cdn.pixabay.com/photo/2016/11/29/03/26/pair-1867051_1280.jpg');
         background-size: cover;
         background-repeat: no-repeat;

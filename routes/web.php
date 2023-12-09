@@ -93,6 +93,8 @@ Route::prefix('/order')->group(function(){
 });
 Route::prefix('/mail')->group(function(){
    Route::get('/confirm',[MailController::class,'confirm'])->name('fe.mail.confirm');
+   Route::get('/indexConfirm/{transaction_id}',[MailController::class,'indexConfirm'])->name('fe.mail.indexConfirm');
+   Route::get('/confirmSuccessMail/{transaction_id}/{cartTotal}',[MailController::class,'confirmSuccessMail'])->name('fe.mail.confirmSuccessMail');
 });
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

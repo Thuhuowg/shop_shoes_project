@@ -14,4 +14,7 @@ function price_sale($price,$discount){
     }
     return 0;
 }
+function minus($a,$b) {
+    return $a-$b;
+}
 ?>

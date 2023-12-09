@@ -91,11 +91,17 @@
                                             <div class="rs1-select2 bor8 bg0">
                                                 <select class="js-select2" name="size_id" id="sizeId">
                                                     <option value="0">Vui lòng chọn kích thước</option>
+                                                    <?php $test='' ?>
                                                     @foreach ($sizes as $size)
-                                                        @if ($pro->category_id == $size->category_id)
-                                                            <option value="{{ $size->id }}">{{ $size->size_number }}
-                                                            </option>
-                                                        @endif
+                                                        @foreach($quantities as $i)
+                                                            @if($size->id==$i->size_id)
+                                                            <option  value="{{ $size->id }}">{{ $size->size_number }}</option>
+                                                                <?php $test=$size->id ?>
+                                                                @endif
+                                                    @endforeach
+                                                    @if($size->id!=$test)
+                                                            <option disabled="1" value="{{ $size->id }}">{{ $size->size_number }}</option>
+                                                            @endif
                                                     @endforeach
 
                                                 </select>
@@ -114,8 +120,8 @@
                                                     <i class="fs-16 zmdi zmdi-minus"></i>
                                                 </div>
 
-                                                <input class="mtext-104 cl3 txt-center num-product" type="number" HEAD
-                                                    id="quantity" name="quantity" value="1">
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number"
+                                                    id="quantity" name="quantity" value="1" >
 
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
@@ -240,11 +246,13 @@
                 let idProduct = $("#idProduct").val();
                 let quantity = $("#quantity").val();
                 let sizeId = $("#sizeId").val();
+
                 let url = $(this).attr('data-url');
                 if (sizeId == 0) {
                     alert('Bạn cần chọn kích cỡ giày !');
                     return false;
                 };
+
                 let data = {
                     'product_id': idProduct,
                     'quantity': quantity,
@@ -273,6 +281,7 @@
             $('#buttonBuy').click(function() {
                 let idProduct = $("#idProduct").val();
                 let quantity = $("#quantity").val();
+                let num=$("#quantity").max(quantity);
                 let sizeId = $("#sizeId").val();
                 let url = $(this).attr('data-url');
                 if (sizeId == 0) {
@@ -282,7 +291,8 @@
                 let data = {
                     'product_id': idProduct,
                     'quantity': quantity,
-                    'size_id': sizeId
+                    'size_id': sizeId,
+                    'max': num
                 };
                 $.ajax({
                     type: 'POST',

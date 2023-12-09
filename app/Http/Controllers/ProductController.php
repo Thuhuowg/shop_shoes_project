@@ -24,16 +24,17 @@ class ProductController extends Controller
     public function home (){
         $search = request()->search ?? "";
         $pros = Product::where('name', 'like', "%$search%")->paginate(12)->withQueryString();
-        $quantities=DB::table('product_sizes')
-            ->get();
-        return view('home',compact('pros','search','quantities'));
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+        return view('home',compact('pros','search','productSizes'));
     }
     public function index()
     {
         //
         $search = request()->search ?? "";
         $pros = Product::where('name', 'like', "%$search%")->paginate(12)->withQueryString();
-        return view('client.product-list',compact('pros','search'));
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+//        dd($productSizes);
+        return view('client.product-list',compact('pros','search','productSizes'));
     }
 
     public function index_admin()
@@ -104,12 +105,16 @@ class ProductController extends Controller
         //
         $pro=Product::where('slug',$slug)->first();
         $image_arr=json_decode($pro->image_list);
-
-        $sizes=Size::all();
+        $sizes=Size::where('category_id',$pro->category_id)->get();
+        $quantities=DB::table('product_sizes')
+            ->where('product_id',$pro->id)
+        ->where('quantity','>',0)
+        ->get();
+      //dd($quantities);
 //        foreach ($test4 as $value) {
 //            var_dump($value);
 //        }
-        return view('client.product-detail',compact('pro','image_arr','sizes'));
+        return view('client.product-detail',compact('pro','image_arr','sizes','quantities'));
 
     }
 

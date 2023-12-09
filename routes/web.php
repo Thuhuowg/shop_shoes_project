@@ -10,6 +10,7 @@ use App\Http\Controllers\QuantityController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MailController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,22 @@ Route::get('/product',[ProductController::class,'index'])->name('client.products
 Route::get('/danh-muc-san-pham/{name}',[CategoryController::class,'show'])->name('client.category');
 Route::get('/danh-muc/{name}/loai/{slug}',[TypeController::class,'show'])->name('client.type');
 
-
 Route::get('/test',function (){
-    return view('client.login');
+
+    $orders=\App\Models\Order::all();
+    foreach ($orders as $order){
+        $quantity=DB::table('product_sizes')->where(['product_id'=>$order->product_id,'size_id'=>$order->size_id])->first();
+
+        var_dump($quantity);
+        DB::table('product_sizes')->where(['product_id'=>$order->product_id,'size_id'=>$order->size_id])
+            ->update([
+                'product_id'=>$order->product_id,
+                'size_id'=>$order->size_id,
+                'quantity'=>\App\Helpers\function\minus($quantity->quantity,$order->quantity)
+                    //($quantity->quantity - $order->quantity)
+            ]);
+    }
+    return view('welcome');
 });
 Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
 Route::get('/dashboard', function () {

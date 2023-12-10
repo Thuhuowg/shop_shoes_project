@@ -111,7 +111,7 @@
                                             </div>
                                             <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                    <i class="fs-16 zmdi zmdi-minus" id="minus"></i>
                                                 </div>
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number" HEAD
@@ -234,6 +234,14 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            $('#plus').click(function() {
+                let quanity = $('#quantity').val();
+                if (quanity > 5) {
+                    alert('Bạn chỉ được mua tối đa 5 đôi giày');
+                    return false;
+                }
+            })
 
 
             $('#addToCart').click(function() {

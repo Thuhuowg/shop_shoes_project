@@ -29,7 +29,9 @@ Route::get('/home', function(){
     return view('layoutClient.fe');
 })->name('home');
 Route::get('/product',[ProductController::class,'index'])->name('client.products');
-
+Route::prefix('/product')->group(function(){
+    Route::post('filterQuantityBySize',[ProductController::class,'filterQuantityBySize'])->name('fe.product.filterQuantityBySize');
+});
 Route::get('/test',function (){
     return view('client.login');
 });

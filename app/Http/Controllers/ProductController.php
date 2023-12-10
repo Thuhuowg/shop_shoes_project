@@ -7,6 +7,7 @@ use App\Models\Size;
 use App\Models\Category;
 use App\Models\ProductSize;
 use App\Models\Type;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
 use Illuminate\Pagination\Paginator;
@@ -159,5 +160,17 @@ class ProductController extends Controller
     }
     public function revenue(){
         return view('admin.statistic.revenue');
+    }
+
+    public function filterQuantityBySize(Request $request){
+        $sizeId=$request->sizeId;
+        $productId=$request->productId;
+        $qtyProduct=ProductSize::where('product_id',$productId)
+        ->where('size_id',$sizeId)->first();
+        $qty = $qtyProduct->quantity;
+        $qtySold=Order::where('product_id',$productId)
+        ->where('size_id',$sizeId)->sum('quantity');
+        $qtyInStock=$qty-$qtySold;
+        return response()->json(['qtyInStock'=>$qtyInStock]);
     }
 }

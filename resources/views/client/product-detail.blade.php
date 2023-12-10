@@ -89,7 +89,8 @@
                                         </div>
                                         <div class="size-204 respon6-next">
                                             <div class="rs1-select2 bor8 bg0">
-                                                <select class="js-select2" name="size_id" id="sizeId">
+                                                <select class="js-select2" name="size_id" id="sizeId"
+                                                    data-url={{ route('fe.product.filterQuantityBySize') }}>
                                                     <option value="0">Vui lòng chọn kích thước</option>
                                                     @foreach ($sizes as $size)
                                                         @if ($pro->category_id == $size->category_id)
@@ -235,12 +236,27 @@
                 }
             });
 
-            $('#plus').click(function() {
-                let quanity = $('#quantity').val();
-                if (quanity > 5) {
-                    alert('Bạn chỉ được mua tối đa 5 đôi giày');
-                    return false;
-                }
+            $('#sizeId').change(function() {
+                let sizeId = $(this).val();
+                let productId = $("#idProduct").val();
+                let data = {
+                    'sizeId': sizeId,
+                    'productId': productId
+                };
+                let url = $(this).attr('data-url');
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        // alert('Thành công rồi');
+                        $("#quantity").attr('data-quantity', data.qtyInStock);
+                        console.log(data.qtyInStock);
+                    },
+
+                })
+
+
             })
 
 

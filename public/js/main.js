@@ -216,12 +216,13 @@
     [ +/- num product ]*/
     $('.btn-num-product-down').on('click', function(){
         var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
+        if(numProduct > 1) $(this).next().val(numProduct - 1);
     });
 
     $('.btn-num-product-up').on('click', function(){
         var numProduct = Number($(this).prev().val());
-        if(numProduct<5) $(this).prev().val(numProduct + 1);
+        let quantity=$("#quantity").attr('data-quantity');
+        if(numProduct<quantity) $(this).prev().val(numProduct + 1);
     });
 
     /*==================================================================

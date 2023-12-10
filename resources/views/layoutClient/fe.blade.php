@@ -92,12 +92,12 @@
                                 <a href="shoping-cart.html">up to 50%</a>
                             </li>
 
-                            <li>
-                                <a href="#">Anta kids</a>
+                            <li class="label1" data-label1="comming soon">
+                                <a href="#">Anta kid</a>
                             </li>
 
                             <li>
-                                <a href="contact.html">Contact</a>
+                                <a href="#">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -171,23 +171,17 @@
                         <h4 class="stext-301 cl0 p-b-30">
                             CÁC DANH MỤC
                         </h4>
-
                         <ul>
+                            @foreach($categories as $category)
                             <li class="p-b-10">
-                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                    Nữ
+                                <a href="{{route('client.category',['name'=>$category->name])}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+                                    {{$category->name}}
                                 </a>
                             </li>
-
+                            @endforeach
                             <li class="p-b-10">
                                 <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                    Nam
-                                </a>
-                            </li>
-
-                            <li class="p-b-10">
-                                <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                                    Trẻ em
+                                    Trẻ em <small>(comming soon)</small>
                                 </a>
                             </li>
                         </ul>
@@ -262,8 +256,8 @@
 
                         <form>
                             <div class="wrap-input1 w-full p-b-4">
-                                <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"
-                                    placeholder="Nhập địa chỉ email">
+{{--                                <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email"--}}
+{{--                                    placeholder="Nhập địa chỉ email">--}}
                                 <div class="focus-input1 trans-04"></div>
                             </div>
 

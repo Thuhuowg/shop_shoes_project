@@ -38,7 +38,7 @@
                             <div class="col-11 mt-3">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" id="email" placeholder="Họ và tên"
+                                    <input type="email" class="form-control" id="email" placeholder="email"
                                         name="email">
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                             <div class="col-11">
                                 <div class="form-group">
                                     <label>Số điện thoại</label>
-                                    <input type="text" class="form-control" id="phone" placeholder="Số điện thoại"
+                                    <input type="number" class="form-control" id="phone" placeholder="Số điện thoại"
                                         name="phone">
                                 </div>
                             </div>

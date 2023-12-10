@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -67,11 +68,12 @@ class TypeController extends Controller
         //
         $cate=Category::where('name',$name)->first();
         $type=Type::where('slug',$slug)->first();
-        $pros=DB::table('products')
-            ->where('category_id',$cate->id)
+        $pros=Product::where('category_id',$cate->id)
             ->where('type_id',$type->id)
             ->paginate(12);
-        return view('client.product-list',compact('pros'));
+        //dd($pros);
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+        return view('client.product-list',compact('pros','productSizes','cate','type'));
     }
 
     /**

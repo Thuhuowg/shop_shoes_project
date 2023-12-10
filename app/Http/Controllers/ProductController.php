@@ -23,8 +23,8 @@ class ProductController extends Controller
      */
     public function home (){
         $search = request()->search ?? "";
-        $pros = Product::where('name', 'like', "%$search%")->paginate(12)->withQueryString();
-        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+        $pros = Product::where('name', 'like', "%$search%")->inRandomOrder()->paginate(12)->withQueryString();
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->orderBy('quantity','desc')->get();
         return view('home',compact('pros','search','productSizes'));
     }
     public function index()

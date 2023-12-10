@@ -3,6 +3,8 @@
     <x-guest-layout>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
+        @if(\Illuminate\Support\Facades\Session::has('message'))
+        <h4 class="text-center text-danger">{{'Tài khoản này chưa tồn tại'}}</h4>@endif
         <h4 class="text-center">Đăng nhập</h4>
         <form method="POST" action="{{ route('login') }}">
             @csrf

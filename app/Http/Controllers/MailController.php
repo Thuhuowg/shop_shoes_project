@@ -46,8 +46,21 @@ class MailController extends Controller
                 'transaction'=>$transaction,
                 'cartTotal'=>$cartTotal
             ];
-           Mail::to("$transaction->email")->send(new ConfirmSuccessMail($mailData));
+            Mail::to("$transaction->email")->send(new ConfirmSuccessMail($mailData));
+            //    if(isset($request->user_id)){
+            //     $user=User::where('id',$request->user_id)->first();
+            //     $coin=$user->coin+300;
+            //     $user->update([
+            //         'coin'=>$coin
+            //     ]);
+            //    }
+            //    session()->forget("order$transaction_id");
+        }
+        return redirect()->route('fe.mail.indexConfirm',$transaction_id);
 
+
+    }
+}
 //            foreach ($orders as $order){
 //                $quantity=DB::table('product_sizes')->where(['product_id'=>$order->product_id,'size_id'=>$order->size_id])->first();
 //                DB::table('product_sizes')->where(['product_id'=>$order->product_id,'size_id'=>$order->size_id])
@@ -57,9 +70,3 @@ class MailController extends Controller
 //                    'quantity'=>\App\Helpers\function\minus($quantity->quantity,$order->quantity)
 //                ]);
 //            }
-        }
-        return redirect()->route('fe.mail.indexConfirm',$transaction_id);
-
-
-    }
-}

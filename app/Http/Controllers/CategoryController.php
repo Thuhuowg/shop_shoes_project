@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -53,7 +54,8 @@ class CategoryController extends Controller
         //
         $cate=Category::where('name',$name)->first();
         $pros=Product::where('category_id',$cate->id)->paginate(12);
-        return view('client.product-list',compact('cate','pros'));
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+        return view('client.product-list',compact('cate','pros','productSizes'));
     }
 
     /**

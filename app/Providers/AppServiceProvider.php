@@ -9,8 +9,10 @@ use App\Models\Type;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -36,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
                  'categories'=>Category::all(),
                  'products'=>Product::all(),
                  'types'=>Type::all(),
-                 'banners'=>Banner::all()
+                 'banners'=>Banner::all(),
              ]);
          });
     }

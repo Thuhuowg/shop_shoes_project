@@ -121,7 +121,7 @@
                                                 </div>
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number"
-                                                    id="quantity" name="quantity" value="1" >
+                                                    id="quantity" name="quantity" value="1">
 
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
@@ -281,7 +281,6 @@
             $('#buttonBuy').click(function() {
                 let idProduct = $("#idProduct").val();
                 let quantity = $("#quantity").val();
-                let num=$("#quantity").max(quantity);
                 let sizeId = $("#sizeId").val();
                 let url = $(this).attr('data-url');
                 if (sizeId == 0) {
@@ -292,7 +291,6 @@
                     'product_id': idProduct,
                     'quantity': quantity,
                     'size_id': sizeId,
-                    'max': num
                 };
                 $.ajax({
                     type: 'POST',

@@ -89,7 +89,8 @@
                                         </div>
                                         <div class="size-204 respon6-next">
                                             <div class="rs1-select2 bor8 bg0">
-                                                <select class="js-select2" name="size_id" id="sizeId">
+                                                <select class="js-select2" name="size_id" id="sizeId"
+                                                    data-url={{ route('fe.product.filterQuantityBySize') }}>
                                                     <option value="0">Vui lòng chọn kích thước</option>
                                                     <?php $test='' ?>
                                                     @foreach ($sizes as $size)
@@ -117,7 +118,7 @@
                                             </div>
                                             <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                    <i class="fs-16 zmdi zmdi-minus" id="minus"></i>
                                                 </div>
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number"
@@ -240,6 +241,29 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
+            $('#sizeId').change(function() {
+                let sizeId = $(this).val();
+                let productId = $("#idProduct").val();
+                let data = {
+                    'sizeId': sizeId,
+                    'productId': productId
+                };
+                let url = $(this).attr('data-url');
+                $.ajax({
+                    type: 'post',
+                    url: url,
+                    data: data,
+                    success: function(data) {
+                        // alert('Thành công rồi');
+                        $("#quantity").attr('data-quantity', data.qtyInStock);
+                        console.log(data.qtyInStock);
+                    },
+
+                })
+
+
+            })
 
 
             $('#addToCart').click(function() {

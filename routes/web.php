@@ -10,7 +10,6 @@ use App\Http\Controllers\QuantityController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\MailController;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +35,20 @@ Route::middleware('user')->group(function () {
 });
 
 
+Route::get('/', function () {
+    return redirect()->route('home');
+});
+Route::get('/home', function(){
+    return view('layoutClient.fe');
+})->name('home');
+Route::get('/product',[ProductController::class,'index'])->name('client.products');
+Route::prefix('/product')->group(function(){
+    Route::post('filterQuantityBySize',[ProductController::class,'filterQuantityBySize'])->name('fe.product.filterQuantityBySize');
+});
+Route::get('/test',function (){
+    return view('client.login');
+});
+Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

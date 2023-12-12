@@ -104,7 +104,7 @@
                         <div class="m-l-25 m-r--38 m-lr-0-xl">
                             <div class="col-11 mt-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" value="Freeship"
+                                    <input type="text" class="form-control" id="name" value="VN Express (freeship)"
                                         readonly="1">
                                 </div>
                             </div>
@@ -122,6 +122,8 @@
                                 <div class="row form-group">
                                     <input type="radio" id="option2" name="payment_method_id" value="1">
                                     <label for="option2" class="m-0 pl-3">Chuyển khoản qua ngân hàng</label><br>
+                                    <p class="ml-5 text-info">STK: 45010005287738 </p><br>
+                                    <p class="ml-5 text-info">Ngân hàng BIDV (Nguyen Thi Thu Huong) </p>
                                 </div>
                             </div>
 

@@ -10,14 +10,13 @@ use Carbon\Carbon;
                 <div class="card-header">
                     <h3 class="card-title"></h3>
                     <div class="float-left" style="display:flex;gap:10px">
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'all']) }}" class="status">All</a>
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'waiting']) }}" class="status">Waiting For
-                            Comfirm</a>
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'pending']) }}" class="status">Pending</a>
+                        <a href="{{ request()->fullUrlWithQuery(['status' => 'all']) }}" class="status">Tất cả</a>
+                        <a href="{{ request()->fullUrlWithQuery(['status' => 'waiting']) }}" class="status">Đợi để xác nhận</a>
+                        <a href="{{ request()->fullUrlWithQuery(['status' => 'pending']) }}" class="status">Chưa xử lý</a>
                         <a href="{{ request()->fullUrlWithQuery(['status' => 'processing']) }}"
-                            class="status">Processing</a>
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'success']) }}" class="status">Success</a>
-                        <a href="{{ request()->fullUrlWithQuery(['status' => 'canceled']) }}" class="status">Canceled</a>
+                            class="status">Đang xử lý</a>
+                        <a href="{{ request()->fullUrlWithQuery(['status' => 'success']) }}" class="status">Thành công</a>
+                        <a href="{{ request()->fullUrlWithQuery(['status' => 'canceled']) }}" class="status">Bị Huỷ</a>
                     </div>
 
 
@@ -36,10 +35,10 @@ use Carbon\Carbon;
                             <tr>
                                 <th style="width: 10px">#</th>
                                 <th>Mã đơn hàng</th>
-                                <th>Full Name</th>
-                                <th>Phone</th>
-                                <th>Status</th>
-                                <th>Time</th>
+                                <th>Tên khách hàng</th>
+                                <th>Điện thoại</th>
+                                <th>Tình trạng</th>
+                                <th>Thời gian</th>
                                 {{-- <th>Số lượng:{{ $count }}</th> --}}
                             </tr>
                         </thead>
@@ -59,35 +58,39 @@ use Carbon\Carbon;
                                     <td>
                                         @switch($item->status)
                                             @case(0)
-                                                <span class="badge badge-warning">Waiting for confirm</span>
+                                                <span class="badge badge-warning">Đợi xác nhận</span>
                                             @break
 
                                             @case(1)
-                                                <span class="badge badge-warning">Pending</span>
+                                                <span class="badge badge-warning">Chưa xử lý</span>
                                             @break
 
                                             @case(2)
-                                                <span class="badge badge-primary">Processing</span>
+                                                <span class="badge badge-primary">Đang xử lý</span>
                                             @break
 
                                             @case(3)
-                                                <span class="badge badge-success">Success</span>
+                                                <span class="badge badge-success">Thành công</span>
                                             @break
 
                                             @case(4)
-                                                <span class="badge badge-danger">Canceled</span>
+                                                <span class="badge badge-danger">Bị Huỷ</span>
                                             @break
                                         @endswitch
                                     </td>
                                     <td style="width:100px">{{ Carbon::parse($item->created_at)->toDateString() }}</td>
-                                    <td style="width:200px">
-                                        <a class="btn btn-warning"
-                                            href="{{ route('admin.order.detail', $item->id) }}">Detail</a>
+                                    <td style="width:230px">
 
+                                        <a class="btn btn-warning"
+                                            href="{{ route('admin.order.detail', $item->id) }}">Chi tiết</a>
+                                        @if($item->status == 2)
+                                        <a class="btn btn-info"
+                                           href="{{ route('admin.order.transport', $item->id) }}">Vận chuyển</a>
+                                        @endif
                                         <div class="btn-group">
                                             <button type="button"
-                                                class="bg-green-500 hover:bg-green-700 text-black font-bold py-2 px-4 rounded">Change
-                                                Status</button>
+                                                class="bg-green-600 hover:bg-green-700 text-black font-bold py-2 px-4 rounded">Thay đổi
+                                                </button>
                                             <button type="button"
                                                 class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-2 rounded-l dropdown-toggle"
                                                 data-toggle="dropdown" aria-expanded="false">
@@ -95,16 +98,15 @@ use Carbon\Carbon;
                                             </button>
                                             <div class="dropdown-menu" role="menu" style="">
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 0]) }}">Waiting
-                                                    For Confirm</a>
+                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 0]) }}">Đợi xác nhận</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 1]) }}">Pending</a>
+                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 1]) }}">Chưa xử lý</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 2]) }}">Processing</a>
+                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 2]) }}">Đang xử lý</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 3]) }}">Succeed</a>
+                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 3]) }}">Thành công</a>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 4]) }}">Cancel</a>
+                                                    href="{{ route('admin.order.changeStatus', ['transaction_id' => $item->id, 'status' => 4]) }}">Bị Huỷ</a>
                                             </div>
                                         </div>
 

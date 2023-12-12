@@ -14,6 +14,12 @@ Route::middleware('admin')->group(function (){
         Route::get('/list', [OrderController::class, 'index'])->name('admin.order.list');
         Route::get('/changeStatus/{transaction_id}/{status}', [OrderController::class, 'changeStatus'])->name('admin.order.changeStatus');
         Route::get('/detail/{transaction_id}', [OrderController::class, 'detail'])->name('admin.order.detail');
+        Route::get('/transport/{transaction_id}', [OrderController::class, 'transport'])->name('admin.order.transport');
+    });
+    Route::prefix('/statistic')->group(function(){
+        Route::get('/inventory',[ProductController::class,'inventory'])->name('admin.inventory');
+        Route::get('/revenue',[ProductController::class,'revenue'])->name('admin.revenue');
+        Route::get('/sell',[ProductController::class,'sell'])->name('admin.sell');
     });
 });
 

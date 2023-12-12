@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="row card-header">
-                    <h3 class="card-title">Danh sách sản phẩm</h3>
+                    <h3 class="card-title">Danh sách Nhân viên</h3>
                     <a class="btn btn-primary ml-4" href="{{route('add.product')}}">+</a>
                     <a class="btn btn-info ml-4" href="{{route('trash.product')}}" >
                         <i class="fa fa-trash"></i>

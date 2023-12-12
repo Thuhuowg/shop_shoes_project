@@ -41,7 +41,8 @@ class ProductController extends Controller
     public function index_admin()
     {
         //
-        $products_pag = Product::orderBy('id','desc')->paginate(5)->withQueryString();;
+        $search = request()->search ?? "";
+        $products_pag = Product::where('name', 'like', "%$search%")->inRandomOrder()->paginate(12)->withQueryString();
         return view('list.products-list', compact('products_pag'));
     }
 
@@ -194,9 +195,19 @@ class ProductController extends Controller
         return view('admin.statistic.inventory',compact('products_pag'));
     }
     public function revenue(){
-        return view('admin.statistic.revenue');
+        $pros = Product::all();
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->orderBy('quantity','desc')->get();
+        return view('admin.statistic.revenue',compact('pros','productSizes'));
     }
+    public function sell(){
+        $products_pag = Product::paginate(5)->withQueryString();
+        // $productId=Product::find(1)->productSizes->sum('quantity');
+        // dd($productId);
 
+        // dd($productSizes);
+        $productSizes=DB::table('product_sizes')->where('quantity','>',0)->get();
+        return view('admin.statistic.sell',compact('products_pag','productSizes'));
+    }
     public function filterQuantityBySize(Request $request){
         $sizeId=$request->sizeId;
         $productId=$request->productId;

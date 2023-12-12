@@ -9,6 +9,17 @@
                     <a class="btn btn-info ml-4" href="{{route('trash.product')}}" >
                         <i class="fa fa-trash"></i>
                     </a>
+
+                        <div class="input-group mb-3">
+                            <form method="get">
+                                <input type="text" class="form-control" name="search" placeholder="nhập sản phẩm muốn tìm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            </form>
+
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">Tìm kiếm </span>
+                            </div>
+                        </div>
+
                 </div>
 
                 <div class="card-body table-responsive p-0">
@@ -30,7 +41,7 @@
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                            @foreach ($products as $product)
+                            @foreach ($products_pag as $product)
                                 <tr>
                                     <th scope="row">{{ $i }}</th>
                                     <td>MaSP</td>

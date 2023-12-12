@@ -32,24 +32,14 @@ Route::middleware('user')->group(function () {
     Route::get('/danh-muc-san-pham/{name}', [CategoryController::class, 'show'])->name('client.category');
     Route::get('/danh-muc/{name}/loai/{slug}', [TypeController::class, 'show'])->name('client.type');
     Route::get('/product-detail/{slug}', [ProductController::class, 'show'])->name('product_detail');
+    Route::prefix('/product')->group(function(){
+        Route::post('filterQuantityBySize',[ProductController::class,'filterQuantityBySize'])->name('fe.product.filterQuantityBySize');
+    });
 });
 
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
-Route::get('/home', function(){
-    return view('layoutClient.fe');
-})->name('home');
-Route::get('/product',[ProductController::class,'index'])->name('client.products');
-Route::prefix('/product')->group(function(){
-    Route::post('filterQuantityBySize',[ProductController::class,'filterQuantityBySize'])->name('fe.product.filterQuantityBySize');
-});
-Route::get('/test',function (){
-    return view('client.login');
-});
-Route::get('/product-detail/{slug}',[ProductController::class,'show'])->name('product_detail');
-Route::get('/dashboard', function () {
+
+Route::get('/dash', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -60,7 +50,7 @@ Route::middleware('auth')->group(function () {
 });
 //admin route
 Route::middleware('admin')->group(function () {
-    Route::get('/homes', function () {
+    Route::get('/dashboard', function () {
         return view('admin.home');
     })->name('admin');
     Route::get('/info', [\App\Http\Controllers\AdminController::class, 'index'])->name('info');

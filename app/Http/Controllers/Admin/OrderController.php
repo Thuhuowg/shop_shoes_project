@@ -45,5 +45,9 @@ class OrderController extends Controller
         $transaction=Transaction::find($transaction_id);
         return view('admin.order.detail',compact('transaction'));
     }
+    public function transport($transaction_id){
+        $transaction=Transaction::find($transaction_id);
+        return view('admin.order.transport',compact('transaction'));
+    }
 
 }

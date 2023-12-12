@@ -2,7 +2,7 @@
     <div class = "invoice-head">
         <div class = "invoice-head-top">
             <div class = "invoice-head-top-left text-start">
-                <img src = "images/logo.png">
+                <img src = "{{asset('images/logo.png')}}">
             </div>
             <div class = "" style="text-align:center">
 
@@ -23,11 +23,11 @@
         <div class = "hr"></div>
         <div class = "invoice-head-middle">
             <div class = "invoice-head-middle-left text-start">
-                <p><span class = "text-bold">Date</span>:{{ $mailData['transaction']->created_at }}</p>
+                <p><span class = "text-bold">Ngày</span>:{{ $mailData['transaction']->created_at }}</p>
             </div>
             <div class = "invoice-head-middle-right text-end">
                 <p>
-                    <span class = "text-bold">Invoice No:</span>#{{ $mailData['transaction']->id }}
+                    <span class = "text-bold">Lập hoá đơn:</span>#{{ $mailData['transaction']->id }}
                 </p>
             </div>
         </div>
@@ -39,6 +39,9 @@
                     <li>Tên khách hàng:{{ $mailData['transaction']->name }}</li>
                     <li>Địa chỉ:{{ $mailData['transaction']->address }}</li>
                     <li>SDT:{{ $mailData['transaction']->phone }}</li>
+                    <li>Hình thức thanh toán: COD - Thanh toán khi nhận hàng</li>
+                    <li><div>Vận chuyển bởi: VN Express </div> <span>Phí vận chuyển: 0 </span></li>
+
                 </ul>
             </div>
         </div>
@@ -79,7 +82,7 @@
 
     <hr>
     <h3>Trạng thái đơn hàng:</h3>
-    <h4>Đã xác nhận </h4>
+    <h4> </h4>
 
 
 </div>

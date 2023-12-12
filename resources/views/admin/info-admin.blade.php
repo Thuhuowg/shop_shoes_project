@@ -33,7 +33,6 @@
                     </div>
 
                 </div>
-                <button type="button" class="col btn btn-block btn-primary d-flex" style="width: 100px;height: 40px">Chỉnh sửa </button>
             </div>
         </div>
 @endsection

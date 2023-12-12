@@ -4,7 +4,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="row card-header">
-                    <h3 class="card-title">Danh sách sản phẩm</h3>
+                    <h3 class="card-title">Danh sách tài khoản khách hàng</h3>
                     <a class="btn btn-primary ml-4" href="#">+</a>
                     <a class="btn btn-info ml-4" href="#" >
                         <i class="fa fa-trash"></i>
@@ -17,7 +17,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Mã KH</th>
-                            <th scope="col">Tên Khach Hang</th>
+                            <th scope="col">Tên khách hàng</th>
                             <th scope="col">Ngày thêm </th>
                             <th scope="col"></th>
                             <th scope="col">Số điện thoại</th>

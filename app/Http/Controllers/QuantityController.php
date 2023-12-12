@@ -54,7 +54,7 @@ class QuantityController extends Controller
             // nếu bạn muốn check lỗi attach thì sẽ dùng
             DB::commit(); // nếu code xử lý thành công thì mới commit dữ liệu
 
-            return redirect()->route('admin');
+            return redirect()->back();
         } catch (Exception $e) {
             DB::rollBack(); // nếu code phía trên xẩy ra lỗi thì sẽ được rollback
 

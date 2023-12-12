@@ -28,13 +28,13 @@
 
 
                         <div class="col-sm-4 invoice-col">
-                            <p style="font-size: 30px">Receiver Info:</p>
+                            <p style="font-size: 30px">Thông tin người nhận:</p>
                             <address>
                                 -Họ và tên:<strong>{{ $transaction->name }}</strong><br>
                                 -Địa chỉ : {{ $transaction->address }}<br>
                                 -{{ $transaction->ward->name }},{{ $transaction->district->name }},Tỉnh
                                 {{ $transaction->province->name }}.<br>
-                                -Phone: {{ $transaction->phone }}<br>
+                                -Điện thoại: {{ $transaction->phone }}<br>
                                 -Email: {{ $transaction->email }}<br>
                             </address>
                         </div>
@@ -44,40 +44,41 @@
                             <br>
                             <b>Trạng thái: @switch($transaction->status)
                                     @case(0)
-                                        <span class="badge badge-warning">waiting for confirm</span>
+                                        <span class="badge badge-warning">Đợi xác nhận</span>
                                     @break
 
                                     @case(1)
-                                        <span class="badge badge-warning">Pending</span>
+                                        <span class="badge badge-warning">Chưa giải quyết</span>
                                     @break
 
                                     @case(2)
-                                        <span class="badge badge-primary">Processing</span>
+                                        <span class="badge badge-primary">Đang xử lý</span>
                                     @break
 
                                     @case(3)
-                                        <span class="badge badge-success">Success</span>
+                                        <span class="badge badge-success">Thành công</span>
                                     @break
 
                                     @case(4)
-                                        <span class="badge badge-danger">Canceled</span>
+                                        <span class="badge badge-danger">Từ chối</span>
                                     @break
                                 @endswitch
                             </b> <br>
-                            <b>Date:</b>{{ $transaction->created_at }}<br>
+                            <b>Ngày lập:</b>{{ $transaction->created_at }}<br>
+
                             {{-- <b>Account:</b> 968-34567 --}}
                         </div>
 
                     </div>
 
-                    <p style="font-size: 30px">Order Info:</p>
+                    <p style="font-size: 30px">Thông tin đặt hàng:</p>
                     <div class="row">
                         <div class="col-12 table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Sản Phẩm</th>
-                                        <th>Image</th>
+                                        <th>Ảnh</th>
                                         <th>Size</th>
                                         <th>Giá</th>
                                         <th>Số lượng</th>
@@ -132,7 +133,7 @@
                             <p class="lead"><span data-lemma="amount" data-pos="NOUN" data-genre="WyJHRU5FUkFMIl0="
                                     data-clicked="true" data-track="d7e48233-7f34-41b8-86a0-1a0ec50add89"
                                     class="elia_highlightedItem active activated" data-hover="Click to learn"
-                                    style="      --elia-color:rgb(33, 37, 41);      --elia-color-back:rgba(33,37,41,0.1);      --elia-color-back-hover:rgba(33,37,41,0.15);    ">Amount
+                                                  style="      --elia-color:rgb(33, 37, 41);      --elia-color-back:rgba(33,37,41,0.1);      --elia-color-back-hover:rgba(33,37,41,0.15);    ">Amount</span>
                                     <div class="highlightCircle"></div>
                                     <div class="elia-bg-highlight"></div>
                                     <div class="elia-hoverAction">
@@ -145,7 +146,7 @@
                                         <table class="table">
                                             <tbody>
                                                 <tr>
-                                                    <th>Total:</th>
+                                                    <th>Tổng:</th>
                                                     <td>{{ number_format($cartTotal, 0, ',', '.') }}Đ</td>
                                                 </tr>
                                             </tbody>
